@@ -12,6 +12,11 @@ body {
     color: #333;
     line-height: 1.6;
 }
+.gallery-grid video {
+    width: 100%;
+    height: auto;
+    max-width: 100%; /* Ensure it scales properly */
+}
 
 /* Navbar Styling */
 nav {
