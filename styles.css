@@ -37,6 +37,7 @@ nav .title {
 nav ul {
     display: flex;
     list-style: none;
+    justify-content: flex-end; /* Aligns the items to the right */
 }
 
 nav ul li {
@@ -46,7 +47,7 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     font-weight: 500;
-    color: #333;
+    color: #333; /* Set text color to black */
     transition: color 0.3s;
 }
 
@@ -56,17 +57,63 @@ nav ul li a:hover {
 
 /* Hamburger Menu */
 .hamburger {
-    display: none;
+    display: none; /* Initially hidden on larger screens */
     cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    z-index: 10;  /* Ensure it appears above other content */
 }
 
 .hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    margin: 5px 0;
+    background-color: black; /* Hamburger icon color */
+    height: 4px;
+    width: 100%;
 }
+
+/* Navbar Layout and Mobile Adjustments */
+nav ul.show {
+    display: block; /* Displays the menu when the hamburger is clicked */
+    position: absolute;
+    top: 60px; /* Adjust to where you want the menu to appear */
+    right: 0;
+    background-color: rgb(19, 16, 16); /* Dark background for dropdown */
+    width: 100%;
+    text-align: center;
+    z-index: 5; /* Ensure it's above other content */
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* Initially hidden on small screens */
+        flex-direction: column;
+        width: 100%;
+        background-color: black; /* Background for mobile menu */
+        position: absolute;
+        top: 60px;
+        left: 0;
+    }
+
+    nav ul.show {
+        display: block; /* Show the menu when 'show' class is added */
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger on small screens */
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Stack the links vertically */
+        text-align: center; /* Center the menu items */
+    }
+
+    nav ul li a {
+        color: white; /* White text color for mobile menu */
+    }
+}
+
+
 
 /* Hero Section */
 .hero {
@@ -252,6 +299,189 @@ footer {
     color: #333;
     text-align: center;
     padding: 20px 0;
+}
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Page Background */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0; /* Light gray background */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar Styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav .brand img {
+    height: 40px;
+}
+
+nav .title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #007f33; /* Green */
+    margin-left: 10px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end; /* Aligns the items to the right */
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: 500;
+    color: black;  /* Set text color to black */
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #007f33; /* Green on hover */
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;  /* Initially hidden */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    z-index: 10;  /* Ensure it appears above other content */
+}
+
+.hamburger span {
+    background-color: black;  /* Set hamburger icon color to black */
+    height: 4px;
+    width: 100%;
+}
+
+/* Navbar Layout and Mobile Adjustments */
+nav ul.show {
+    display: block; /* Displays the menu when the hamburger is clicked */
+    position: absolute;
+    top: 60px;  /* Adjust to where you want the menu to appear */
+    right: 0;
+    background-color: rgb(19, 16, 16);
+    width: 100%;
+    text-align: center;
+    z-index: 5;  /* Ensure it's above other content */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: 500;
+    color: black;  /* Set the text color to black */
+    padding: 10px 20px;
+    display: block;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;  /* Initially hidden on small screens */
+        flex-direction: column;
+        width: 100%;
+        background-color: black;  /* White background */
+        position: absolute;
+        top: 60px;
+        left: 0;
+    }
+
+    nav ul.show {
+        display: block;
+    }
+
+    .hamburger {
+        display: flex;  /* Show hamburger on small screens */
+    }
+
+    nav ul li {
+        margin: 10px 0;  /* Stack the links vertically */
+        text-align: center;  /* Center the menu items */
+    }
+}
+
+/* Navbar Layout and Mobile Adjustments */
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end; /* Aligns the items to the right */
+}
+
+nav ul.show {
+    display: block; /* Displays the menu when the hamburger is clicked */
+    position: absolute;
+    top: 60px;  /* Adjust to where you want the menu to appear */
+    right: 0;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: 500;
+    color: black;  /* Set the text color to black */
+    padding: 10px 20px;
+    display: block;
+}
+
+nav ul li a:hover {
+    color: #007f33; /* Green color on hover */
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;  /* Initially hidden on small screens */
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul.show {
+        display: block;
+    }
+
+    .hamburger {
+        display: flex;  /* Display the hamburger icon */
+    }
+
+    nav ul li {
+        margin: 10px 0;  /* Stack the links vertically */
+    }
 }
 
 footer p {
