@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delima Empire</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="shop.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+          .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .logo {
+            height: 60px;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+
+    /* CSS for animation */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .animation-container {
+      text-align: center;
+      padding: 50px;
+      background-color: #f0f0f0;
+    }
+    .animation-container h1 {
+      font-size: 3rem;
+      color: #008000;
+      animation: fadeIn 2s ease-out;
+    }
+    .animation-container img {
+      max-width: 100%;
+      height: auto;
+      animation: fadeIn 2s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="animation-container">
+    <h1>Delima Empire</h1>
+    <img src="logo.jpg" alt="Shop Image">
+  </div>
+  
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Delima Empire</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#shop">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="report.html">Report</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" onclick="filterProducts('Perfume Paradise')">
+                Perfume Paradise <i class="fas fa-perfume"></i>
+              </a>
+              <a class="dropdown-item" href="#" onclick="filterProducts('Skin care')">
+                Skin care <i class="fas fa-spa"></i>
+              </a>
+              <a class="dropdown-item" href="#" onclick="filterProducts('Gleaming Glasses')">
+                Gleaming Glasses <i class="fas fa-glass-cheers"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <form class="form-inline my-2 my-lg-0" onsubmit="event.preventDefault(); searchProducts()">
+      <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Search products..." aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <button class="btn btn-secondary ml-2" onclick="clearSearch()">Clear Search</button>
+  </header>
+  
+  <div class="note-container">
+    <h2 class="note-heading">Unveil the Essence of Elegance</h2>
+    <p class="note-content">
+      Step into a realm where <span class="note-highlight">every fragrance tells a story</span>, each piece of glassware exudes sophistication, and every bag enhances your style. Discover skincare products that rejuvenate and pamper your skin, elevating your daily routine to a luxurious experience.
+    </p>
+    <p class="note-content">
+      Transform your scent with our exquisite perfumes, crafted to leave a lasting impression. Adorn your space with our elegant glassware, designed to add a touch of refinement to any setting. Complement your look with our chic bags, perfect for any occasion.
+    </p>
+    <p class="note-content">
+      Our skincare line promises to nurture and revitalize, providing the ultimate indulgence for your skin. Whether you're in search of a signature scent, timeless glassware, a stylish bag, or luxurious skincare, our curated selection promises to exceed your expectations. Embrace elegance and elevate your everyday with us.
+    </p>
+    
+    <a href="#shop" class="btn btn-primary note-button">Shop Now</a>
+  </div>
+  
+  <main id="shop">
+    <div class="products-container" id="products"></div>
+    <section class="customer-reviews">
+      <!-- Customer reviews/testimonials will be displayed here -->
+    </section>
+  </main>
+  
+  <footer class="classic-footer">
+    <p>&copy; 2024 Delima Empire. Developed by 1st generations <img class="logo" src="gen.jpg" alt="">. All rights reserved.</p>
+    <div class="social-media-icons">
+      <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-square"></i></a>
+      <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter-square"></i></a>
+      <a href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram-square"></i></a>
+      <a href="https://www.youtube.com/yourpage" target="_blank"><i class="fab fa-youtube-square"></i></a>
+      <a href="https://www.linkedin.com/yourpage" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+  
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <h2>Choose Option</h2>
+      <button class="btn btn-primary" onclick="orderPickup()">Pick-Up</button>
+      <button class="btn btn-primary" onclick="orderDelivery()">Delivery</button>
+      <button class="btn btn-secondary" onclick="closeOrderModal()">Close</button>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="shop.js"></script>
+</body>
+</html>
