@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Augustine's College Student/Parent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #006400; /* Dark green */
+            --secondary-color: #ffffff;
+            --text-color: #333;
+            --background-light: #ffffff;
+            --background-dark: #008000; /* Green */
+            --button-hover: #004d00;
+            --border-radius: 12px;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background-light);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background: var(--background-dark);
+            color: var(--secondary-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .toggle-btn {
+            background: var(--secondary-color);
+            border: none;
+            color: var(--primary-color);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: var(--button-hover);
+            color: var(--secondary-color);
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: var(--background-dark);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            width: 280px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo2.png" alt="Logo">
+            St. Augustine's College Student&Parent web app
+        </div>
+        <button class="toggle-btn" onclick="toggleMode()">light/Dark Mode</button>
+    </nav>
+    <div class="card-container">
+        <div class="card">
+            <a href="transcript.php">
+                <i class="fas fa-file-alt icon"></i>
+                <div class="title">Transcript</div>
+                <div class="description">View and download your academic transcript.</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="library.html">
+                <i class="fas fa-book icon"></i>
+                <div class="title">Library</div>
+                <div class="description">Access a wide range of books and resources.</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

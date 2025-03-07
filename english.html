@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WASSCE 2024 English Quiz</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 20px;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 10;
+        }
+        nav a {
+            color: white; margin: 0 15px; text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #ffdd57; }
+        .container {
+            background: white; color: black;
+            padding: 20px; border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px; margin: 70px auto;
+        }
+        .progress-bar { background: #ddd; height: 8px; border-radius: 5px; }
+        .progress { height: 100%; width: 0%; background: #007BFF; transition: width 0.5s; }
+        .question { font-size: 18px; font-weight: bold; text-align: left; }
+        .options li {
+            background: #007BFF; color: white;
+            padding: 10px; margin: 5px 0; border-radius: 5px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .options li:hover { background: #0056b3; }
+        .correct { background: #28a745 !important; }
+        .wrong { background: #dc3545 !important; }
+        .score { font-size: 18px; margin-top: 10px; color: #333; }
+        .answer-display { margin-top: 10px; font-weight: bold; color: #333; }
+        button {
+            margin-top: 15px; padding: 10px 15px;
+            background: #28a745; color: white;
+            border: none; border-radius: 5px; cursor: pointer;
+        }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="h.html">Home</a>
+        <a href="">Section B</a>
+     
+    </nav>
+    <div class="container">
+        <div class="progress-bar">
+            <div id="progress" class="progress"></div>
+        </div>
+        <div class="timer">Time left: <span id="timer">15</span> sec</div>
+        <div id="quiz"></div>
+        <button id="next-btn" onclick="nextQuestions()">Next</button>
+        <div id="score" class="score"></div>
+        <button id="restart-btn" onclick="restartQuiz()" style="display:none;">Restart Quiz</button>
+    </div>
+    <script>
+        const questions = [
+            { question: "What is the main idea of a passage?", options: ["A. To inform", "B. To entertain", "C. To persuade", "D. To describe"], answer: "A" },
+            { question: "What does 'simile' mean?", options: ["A. A metaphor", "B. A comparison using 'like' or 'as'", "C. A rhyme", "D. A sound device"], answer: "B" },
+            { question: "What is a compound sentence?", options: ["A. I went to school.", "B. I went to school and I studied.", "C. I went to school after lunch.", "D. I went to school because I was late."], answer: "B" }
+        ];
+        let currentIndex = 0, correctAnswers = 0, totalAnswered = 0, timer;
+        function startTimer() {
+            let timeLeft = 15;
+            document.getElementById("timer").textContent = timeLeft;
+            clearInterval(timer);
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").textContent = timeLeft;
+                if (timeLeft <= 0) { clearInterval(timer); nextQuestions(); }
+            }, 1000);
+        }
+        function displayQuestions() {
+            let quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+            let q = questions[currentIndex];
+            let questionHTML = `<div class='question'>${currentIndex + 1}. ${q.question}</div><ul class='options'>`;
+            q.options.forEach(option => {
+                questionHTML += `<li onclick='selectAnswer(this, "${q.answer}", ${currentIndex})'>${option}</li>`;
+            });
+            questionHTML += `</ul><div class='answer-display' id='answer-${currentIndex}'></div>`;
+            quizContainer.innerHTML = questionHTML;
+            document.getElementById("progress").style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+            startTimer();
+        }
+        function selectAnswer(element, correctAnswer, index) {
+            clearInterval(timer);
+            let options = element.parentElement.querySelectorAll("li");
+            options.forEach(opt => opt.style.pointerEvents = "none");
+            if (element.textContent.startsWith(correctAnswer)) {
+                element.classList.add("correct");
+                correctAnswers++;
+            } else {
+                element.classList.add("wrong");
+                document.getElementById(`answer-${index}`).textContent = `Correct answer: ${correctAnswer}`;
+            }
+            totalAnswered++;
+        }
+        function nextQuestions() {
+            currentIndex++;
+            if (currentIndex < questions.length) {
+                displayQuestions();
+            } else {
+                document.getElementById("quiz").innerHTML = `<p>Quiz Completed!</p>`;
+                document.getElementById("score").innerHTML = `Score: ${correctAnswers}/${totalAnswered}`;
+                document.getElementById("next-btn").style.display = "none";
+                document.getElementById("restart-btn").style.display = "block";
+            }
+        }
+        function restartQuiz() {
+            if (confirm("Are you sure you want to restart?")) {
+                currentIndex = 0; correctAnswers = 0; totalAnswered = 0;
+                document.getElementById("next-btn").style.display = "block";
+                document.getElementById("restart-btn").style.display = "none";
+                document.getElementById("score").innerHTML = "";
+                displayQuestions();
+            }
+        }
+        displayQuestions();
+    </script>
+</body>
+</html>
