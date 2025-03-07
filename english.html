@@ -3,77 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WASSCE 2024 English Quiz</title>
+    <title>St. Augustine's (Cape Coast) WASSCE English Quiz</title>
     <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            text-align: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: linear-gradient(135deg, #006400, #FFD700); /* St. Augustine's green and gold */
             color: white;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            transition: background 0.5s ease;
         }
+
+        /* Header and Navigation */
         nav {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px 30px;
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s ease;
+        }
+        nav img {
+            height: 40px; /* Adjust logo size */
         }
         nav a {
-            color: white; margin: 0 15px; text-decoration: none;
-            transition: color 0.3s;
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
         }
-        nav a:hover { color: #ffdd57; }
+        nav a:hover {
+            color: #FFD700; /* Gold on hover */
+        }
+
+        /* Home Page Layout */
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .cta-button {
+            background-color: #FFD700; /* Gold */
+            color: #006400; /* Green */
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #006400; /* Dark Green */
+            transform: scale(1.05);
+        }
+
+        /* Quiz Container */
         .container {
-            background: white; color: black;
-            padding: 20px; border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            max-width: 600px; margin: 70px auto;
+            background: #fff;
+            color: black;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            margin-top: 70px;
+            text-align: left;
+            display: none;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
-        .progress-bar { background: #ddd; height: 8px; border-radius: 5px; }
-        .progress { height: 100%; width: 0%; background: #007BFF; transition: width 0.5s; }
-        .question { font-size: 18px; font-weight: bold; text-align: left; }
-        .options li {
-            background: #007BFF; color: white;
-            padding: 10px; margin: 5px 0; border-radius: 5px;
-            cursor: pointer; transition: 0.3s;
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
-        .options li:hover { background: #0056b3; }
-        .correct { background: #28a745 !important; }
-        .wrong { background: #dc3545 !important; }
-        .score { font-size: 18px; margin-top: 10px; color: #333; }
-        .answer-display { margin-top: 10px; font-weight: bold; color: #333; }
+
+        /* Buttons */
         button {
-            margin-top: 15px; padding: 10px 15px;
-            background: #28a745; color: white;
-            border: none; border-radius: 5px; cursor: pointer;
+            padding: 12px 20px;
+            background-color: #006400; /* Dark Green */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+            width: 100%;
         }
-        button:hover { background: #218838; }
+
+        button:hover {
+            background-color: #FFD700; /* Gold */
+            transform: scale(1.05);
+        }
+
+        /* Timer & Progress Bar */
+        .timer {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: #ddd;
+            height: 8px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0;
+            background: #006400; /* Dark Green */
+            transition: width 0.5s ease;
+        }
+
+        /* Question Section */
+        .question {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            animation: fadeIn 0.8s forwards;
+        }
+
+        .options li {
+            background: #006400; /* Dark Green */
+            color: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .options li:hover {
+            background: #FFD700; /* Gold */
+            transform: scale(1.05);
+        }
+
+        .correct {
+            background: #28a745 !important;
+        }
+
+        .wrong {
+            background: #dc3545 !important;
+        }
+
+        .score {
+            font-size: 20px;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .answer-display {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Mobile Friendly */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .question {
+                font-size: 18px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            .cta-button {
+                font-size: 18px;
+                padding: 12px 25px;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="h.html">Home</a>
-        <a href="">Section B</a>
-     
+    <!-- Navigation Bar (Initially hidden) -->
+    <nav id="navbar">
+        <!-- St. Augustine's Logo on the left -->
+        <img src="logo2.png" alt="St. Augustine's College Logo">
+        <span style="color:white; font-size: 22px; font-weight: bold;">WASSCE English Objective Test (2020)</span>
+        <div>
+            <a href="library.html">back</a>
+            <a href="section B">section B</a>
+        
+        </div>
     </nav>
-    <div class="container">
+
+    <!-- Home Page with Single CTA Button -->
+    <div class="home-container">
+        <h1>Welcome to the St. Augustine's (Cape Coast) WASSCE 2020 English Test!</h1>
+        <p>Prepare yourself for the best English quiz experience</p>
+        <p>Be Ambitious</p>
+        <a href="#" class="cta-button" onclick="startQuiz()">Start Quiz</a>
+    </div>
+
+    <!-- Quiz Page Layout -->
+    <div class="container" id="quiz-container">
         <div class="progress-bar">
             <div id="progress" class="progress"></div>
         </div>
         <div class="timer">Time left: <span id="timer">15</span> sec</div>
         <div id="quiz"></div>
-        <button id="next-btn" onclick="nextQuestions()">Next</button>
+        <button id="next-btn" onclick="nextQuestions()" style="display:none;">Next</button>
         <div id="score" class="score"></div>
         <button id="restart-btn" onclick="restartQuiz()" style="display:none;">Restart Quiz</button>
     </div>
+
+
     <script>
         const questions = [
-            { question: "What is the main idea of a passage?", options: ["A. To inform", "B. To entertain", "C. To persuade", "D. To describe"], answer: "A" },
-            { question: "What does 'simile' mean?", options: ["A. A metaphor", "B. A comparison using 'like' or 'as'", "C. A rhyme", "D. A sound device"], answer: "B" },
-            { question: "What is a compound sentence?", options: ["A. I went to school.", "B. I went to school and I studied.", "C. I went to school after lunch.", "D. I went to school because I was late."], answer: "B" }
+            { question: "Geraldine is very <u>courteous</u> but her brother, Gerald is unbelievably........", options: ["A. Arrogant", "B. Impolite", "C. Snobbish", "D. Haughty"], answer: "B" },
+            { question: "Whilst Lydia became......in the course of the contest, Lena was <u>confident</u>. ", options: ["A. Assuring", "B. Boastful", "C. Incensed", "D. Jittery"], answer: "D" },
+            { question: "We thought Jane was the <u>instigator</u> of the take-over; it turned out she was rather the.......   ", options: ["A. Accomplice", "B. Troubleshooter", "C. Advisor", "D. Cool-head"], answer: "D" },
         ];
         let currentIndex = 0, correctAnswers = 0, totalAnswered = 0, timer;
+
         function startTimer() {
             let timeLeft = 15;
             document.getElementById("timer").textContent = timeLeft;
@@ -81,9 +258,13 @@
             timer = setInterval(() => {
                 timeLeft--;
                 document.getElementById("timer").textContent = timeLeft;
-                if (timeLeft <= 0) { clearInterval(timer); nextQuestions(); }
+                if (timeLeft <= 0) { 
+                    clearInterval(timer); 
+                    nextQuestions(); 
+                }
             }, 1000);
         }
+
         function displayQuestions() {
             let quizContainer = document.getElementById("quiz");
             quizContainer.innerHTML = "";
@@ -97,6 +278,7 @@
             document.getElementById("progress").style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
             startTimer();
         }
+
         function selectAnswer(element, correctAnswer, index) {
             clearInterval(timer);
             let options = element.parentElement.querySelectorAll("li");
@@ -109,11 +291,14 @@
                 document.getElementById(`answer-${index}`).textContent = `Correct answer: ${correctAnswer}`;
             }
             totalAnswered++;
+            document.getElementById("next-btn").style.display = "block";
         }
+
         function nextQuestions() {
             currentIndex++;
             if (currentIndex < questions.length) {
                 displayQuestions();
+                document.getElementById("next-btn").style.display = "none";
             } else {
                 document.getElementById("quiz").innerHTML = `<p>Quiz Completed!</p>`;
                 document.getElementById("score").innerHTML = `Score: ${correctAnswers}/${totalAnswered}`;
@@ -121,16 +306,25 @@
                 document.getElementById("restart-btn").style.display = "block";
             }
         }
+
         function restartQuiz() {
             if (confirm("Are you sure you want to restart?")) {
                 currentIndex = 0; correctAnswers = 0; totalAnswered = 0;
-                document.getElementById("next-btn").style.display = "block";
+                document.getElementById("next-btn").style.display = "none";
                 document.getElementById("restart-btn").style.display = "none";
                 document.getElementById("score").innerHTML = "";
+                document.getElementById("progress").style.width = "0%";
                 displayQuestions();
             }
         }
-        displayQuestions();
+
+        function startQuiz() {
+            // Hide home page and show the quiz page
+            document.querySelector(".home-container").style.display = "none"; 
+            document.getElementById("quiz-container").style.display = "block"; 
+            document.getElementById("navbar").style.display = "block"; // Show navigation bar
+            displayQuestions();
+        }
     </script>
 </body>
 </html>
