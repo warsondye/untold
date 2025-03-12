@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2020 WASSCE English Section B Questions & Answers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .subject {
+            background: green;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .questions {
+            display: none;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>2020 WASSCE English Section B Questions & Answers</h1>
+        
+        <div class="subject" onclick="toggleQuestions('english')">English Language</div>
+        <div id="english" class="questions">
+            <p><strong>Question 1:</strong> Write a letter to your principal discussing the importance of discipline in the school.</p>
+            <p><strong>Answer:</strong> The letter should introduce the topic, outline key reasons why discipline is important, provide examples, and conclude with a polite appeal.</p>
+            
+            <p><strong>Question 2:</strong> Describe a memorable day in your life.</p>
+            <p><strong>Answer:</strong> The response should include a clear description of the event, emotions felt, and why it was memorable.</p>
+            
+            <p><strong>Question 3:</strong> Explain how social media influences students' academic performance.</p>
+            <p><strong>Answer:</strong> The essay should discuss positive and negative impacts, including distraction, research benefits, and communication.</p>
+            
+            <p><strong>Question 4:</strong> Write a speech on "The Role of Youth in National Development."</p>
+            <p><strong>Answer:</strong> The speech should highlight contributions of youth in technology, leadership, and community service.</p>
+            
+            <p><strong>Question 5:</strong> Discuss the effects of climate change on agriculture in your country.</p>
+            <p><strong>Answer:</strong> The essay should explain rising temperatures, unpredictable rainfall, and their impact on crop production and food security.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleQuestions(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

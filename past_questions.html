@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Augustine's College - Past Questions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #006400; /* Dark Green */
+            --secondary-color: #ffffff;
+            --text-color: #333;
+            --background-light: #ffffff;
+            --background-dark: #008000; /* Green */
+            --button-hover: #004d00;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background-light);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .toggle-btn {
+            background: var(--secondary-color);
+            border: none;
+            color: var(--primary-color);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: var(--button-hover);
+            color: var(--secondary-color);
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--background-dark);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+      
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Past Questions & Answers(2006 -2024)</div>
+    </nav>
+    
+    <div class="card-container">
+        <div class="card"><a href="english.html"><i class="fas fa-file-alt icon"></i><div class="title">English Language</div></a></div>
+        <div class="card"><a href="maths.html"><i class="fas fa-book icon"></i><div class="title">Core Maths</div></a></div>
+        <div class="card"><a href="social.html"><i class="fas fa-globe icon"></i><div class="title">Social Studies</div></a></div>
+        <div class="card"><a href="science.html"><i class="fas fa-flask icon"></i><div class="title">Integrated Science</div></a></div>
+        <div class="card"><a href="physics.html"><i class="fas fa-atom icon"></i><div class="title">Physics</div></a></div>
+        <div class="card"><a href="emaths.html"><i class="fas fa-calculator icon"></i><div class="title">E-Maths</div></a></div>
+        <div class="card"><a href="chemistry.html"><i class="fas fa-vial icon"></i><div class="title">Chemistry</div></a></div>
+        <div class="card"><a href="biology.html"><i class="fas fa-dna icon"></i><div class="title">Biology</div></a></div>
+        <div class="card"><a href="economics.html"><i class="fas fa-chart-line icon"></i><div class="title">Economics</div></a></div>
+        <div class="card"><a href="history.html"><i class="fas fa-landmark icon"></i><div class="title">History</div></a></div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 St. Augustine's College. All rights reserved.</p>
+    </footer>
+</body>
+</html>

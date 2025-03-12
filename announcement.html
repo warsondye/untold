@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Augustine's College Announcements</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    header {
+      background: linear-gradient(to right, #004d2c, #002b16);
+      color: white;
+      padding: 20px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    header img {
+      width: 70px;
+      height: auto;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    
+    section {
+      width: 90%;
+      max-width: 800px;
+      background: white;
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+      text-align: center;
+      color: #004d2c;
+      font-size: 1.8rem;
+    }
+    
+    .announcement-item {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 5px solid #004d2c;
+      border-radius: 5px;
+      transition: 0.3s ease;
+    }
+    
+    .announcement-item:hover {
+      transform: scale(1.02);
+      background: #eef6f0;
+    }
+    
+    .announcement-item h4 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    
+    .announcement-item p {
+      color: #555;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #004d2c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    
+    button:hover {
+      background: #00361f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo2.png" alt="School Logo">
+    <h1>St. Augustine's College</h1>
+  </header>
+  
+  <section>
+    <h2>Latest Announcements</h2>
+    <div id="announcement-list"></div>
+   
+    <form id="announcement-form">
+
+  </section>
+  
+  <script>
+    const announcements = [
+      { title: "End of Term Exams", content: "Exams start next week, be prepared.", author: "Admin" },
+      { title: "New Library Books", content: "New books have arrived, check them out!", author: "Principal" }
+    ];
+    
+    function renderAnnouncements() {
+      const list = document.getElementById("announcement-list");
+      list.innerHTML = announcements.map(a => `
+        <div class="announcement-item">
+          <h4>${a.title}</h4>
+          <p>${a.content}</p>
+          <small>Posted by: ${a.author}</small>
+        </div>
+      `).join('');
+    }
+    
+    document.getElementById("announcement-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const title = document.getElementById("announcement-title").value;
+      const content = document.getElementById("announcement-content").value;
+      announcements.push({ title, content, author: "Admin" });
+      renderAnnouncements();
+      this.reset();
+    });
+    
+    window.onload = renderAnnouncements;
+  </script>
+</body>
+</html>
