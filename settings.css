@@ -1,0 +1,120 @@
+:root {
+    --primary-color: #006400; /* Default Green */
+    --secondary-color: #ffffff;
+    --background-light: #f8f9fa;
+    --background-dark: #121212;
+    --text-dark: #333;
+    --text-light: #fff;
+    --border-radius: 15px;
+    --shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme Color - Applied Globally */
+body {
+    background: var(--background-light);
+    color: var(--text-dark);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background: var(--background-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode .navbar,
+body.dark-mode .sidebar {
+    background: #222;
+}
+
+body.dark-mode a {
+    color: var(--text-light);
+}
+
+/* Theme Color Updates */
+.theme-green {
+    --primary-color: #006400;
+}
+.theme-blue {
+    --primary-color: #007BFF;
+}
+.theme-red {
+    --primary-color: #FF4136;
+}
+.theme-purple {
+    --primary-color: #6f42c1;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--primary-color);
+}
+
+/* Card Container */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow);
+    color: var(--text-dark);
+}
+body.dark-mode .card {
+    background: #1e1e1e;
+    color: var(--text-light);
+}
+
+/* Text Size */
+body.text-small {
+    font-size: 14px;
+}
+body.text-medium {
+    font-size: 16px;
+}
+body.text-large {
+    font-size: 18px;
+}
+
+/* Toggle Switch (Dark Mode) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
