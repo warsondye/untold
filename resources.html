@@ -1,152 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Resources</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #008000;
-            --secondary-color: #ffffff;
-            --background-light: #f8f9fa;
-            --background-dark: #121212;
-            --card-bg: rgba(255, 255, 255, 0.15);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-            --blur: 10px;
-            --border-radius: 15px;
-            --text-light: #fff;
-            --text-dark: #222;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Academic Resources</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary-color: #008000;
+      --secondary-color: #ffffff;
+      --background-light: #f8f9fa;
+      --background-dark: #121212;
+      --card-bg: rgba(255, 255, 255, 0.15);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      --blur: 10px;
+      --border-radius: 15px;
+      --text-light: #fff;
+      --text-dark: #222;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-        body {
-            background: var(--background-light);
-            text-align: center;
-            transition: 0.4s ease-in-out;
-        }
+    body {
+      background: var(--background-light);
+      color: var(--text-dark);
+      transition: background 0.4s ease-in-out, color 0.4s;
+      text-align: center;
+      min-height: 100vh;
+      padding-bottom: 50px;
+    }
 
-        body.dark-mode {
-            background: var(--background-dark);
-            color: var(--text-light);
-        }
+    body.dark-mode {
+      background: var(--background-dark);
+      color: var(--text-light);
+    }
 
-        .header {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
+    .header {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      padding: 20px 50px;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-wrap: wrap;
+    }
 
-        .toggle-mode {
-            background: var(--secondary-color);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 20px auto;
-            display: block;
-        }
+    .back-arrow {
+      position: absolute;
+      left: 20px;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--secondary-color);
+      transition: transform 0.3s;
+    }
 
-        .toggle-mode:hover {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-        }
+    .back-arrow:hover {
+      transform: scale(1.1);
+    }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+    .toggle-mode {
+      position: absolute;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--secondary-color);
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
 
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(var(--blur));
-            border-radius: var(--border-radius);
-            padding: 30px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            color: var(--text-dark);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
+    .toggle-mode:hover {
+      transform: rotate(20deg);
+    }
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
+    .search-bar {
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 10px 20px;
+      border: 2px solid var(--primary-color);
+      border-radius: 25px;
+      outline: none;
+      font-size: 16px;
+      width: 90%;
+    }
 
-        .card i {
-            font-size: 50px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
+    .filters {
+      margin: 10px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-        .card h3 {
-            margin: 10px 0;
-            font-size: 22px;
-        }
+    .filter-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 25px;
+      background: var(--primary-color);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        .card a {
-            text-decoration: none;
-            color: inherit;
-            font-weight: bold;
-            display: block;
-            padding: 10px 0;
-            transition: 0.3s ease;
-        }
+    .filter-btn:hover {
+      background: #006400;
+      transform: scale(1.05);
+    }
 
-        .card a:hover {
-            color: var(--primary-color);
-        }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 20px;
+    }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(var(--blur));
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      color: inherit;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card i {
+      font-size: 50px;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+
+    .card h3 {
+      margin: 10px 0;
+      font-size: 22px;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .card a:hover {
+      color: var(--primary-color);
+    }
+
+    .contact {
+      background: var(--primary-color);
+      color: white;
+      padding: 30px;
+      margin-top: 40px;
+    }
+
+    .contact h2 {
+      margin-bottom: 20px;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .contact button {
+      padding: 12px;
+      background: #006400;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact button:hover {
+      background: #004d00;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 15px 20px;
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="header">
+    <i class="fas fa-arrow-left back-arrow" onclick="history.back()" title="Go Back"></i>
+    📚 Academic Resources
+    <button class="toggle-mode" onclick="toggleMode()" title="Toggle Dark Mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
 
-    <div class="header">📚 Academic Resources</div>
+  <input type="text" class="search-bar" id="searchInput" placeholder="Search resources..." onkeyup="filterCards()" />
 
-    <button class="toggle-mode" onclick="toggleMode()">Light/Dark Mode</button>
+  <div class="filters">
+    <button class="filter-btn" onclick="filterBy('all')">All</button>
+    <button class="filter-btn" onclick="filterBy('textbook')">Textbooks</button>
+    <button class="filter-btn" onclick="filterBy('past')">Past Questions</button>
+    <button class="filter-btn" onclick="filterBy('video')">Tutorial Videos</button>
+    <button class="filter-btn" onclick="filterBy('course')">Courses</button>
+  </div>
 
-    <div class="container">
-        <div class="card">
-            <i class="fas fa-book"></i>
-            <h3>Textbooks</h3>
-            <a href="textbook.html">View More</a>
-        </div>
-        <div class="card">
-            <i class="fas fa-file-alt"></i>
-            <h3>Past Questions</h3>
-            <a href="past_questions.html">View More</a>
-        </div>
-        <div class="card">
-            <i class="fas fa-clipboard-list"></i>
-            <h3>Recent Exams</h3>
-            <a href="recent_exams.html">View More</a>
-        </div>
+  <div class="container" id="cardContainer">
+    <div class="card" data-category="textbook">
+      <i class="fas fa-book"></i>
+      <h3>Textbooks</h3>
+      <a href="textbook.html">View More</a>
     </div>
+    <div class="card" data-category="past">
+      <i class="fas fa-file-alt"></i>
+      <h3>Past Questions</h3>
+      <a href="past_questions.html">View More</a>
+    </div>
+    <div class="card" data-category="past">
+      <i class="fas fa-clipboard-list"></i>
+      <h3>Recent Exams</h3>
+      <a href="recent_exams.html">View More</a>
+    </div>
+    <div class="card" data-category="course">
+      <i class="fas fa-laptop-code"></i>
+      <h3>Online Courses</h3>
+      <a href="courses.html">View More</a>
+    </div>
+    <div class="card" data-category="video">
+      <i class="fas fa-chalkboard-teacher"></i>
+      <h3>Tutorial Videos</h3>
+      <a href="tutorials.html">View More</a>
+    </div>
+  </div>
 
-    <script>
-        function toggleMode() {
-            document.body.classList.toggle('dark-mode');
+  <div class="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function filterCards() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        card.style.display = title.includes(input) ? 'block' : 'none';
+      });
+    }
+
+    function filterBy(category) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
         }
-    </script>
-<script src="settings.js"></script>
+      });
+    }
+  </script>
 </body>
 </html>

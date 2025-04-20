@@ -378,38 +378,35 @@ body.dark-mode {
   color: var(--text-dark);
 }
 .hero {
-  background: var(--bg-light);
-  padding: 5rem 1rem;
-  text-align: center;
-  color: var(--text-dark);
-}
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
 
-.hero-text h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  color: var(--primary);
-}
+    .hero h1 {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
 
-.hero-text p {
-  font-size: 1.2rem;
-  color: var(--gray);
-  margin: 1rem 0;
-}
+    .hero p {
+      font-size: 1rem;
+      color: var(--gray);
+      margin: 0.8rem 0;
+    }
 
-.hero-text button {
-  background: var(--primary);
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    .hero button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-.hero-text button:hover {
-  background: var(--secondary);
-}
+    .hero button:hover {
+      background: var(--secondary);
+    }
 
 
   </style>
@@ -475,7 +472,7 @@ body.dark-mode {
     <section class="slider" id="slider">
       <div class="slider-container" id="sliderContainer">
         <img src="logo2.png" alt="Slide 1" class="slide active">
-        <img src="img2.jpg" alt="Slide 2" class="slide">
+        <img src="insight .jpg" alt="Slide 2" class="slide">
         <img src="img3.jpg" alt="Slide 3" class="slide">
       </div>
       <div class="dots" id="dots"></div>
@@ -500,7 +497,7 @@ body.dark-mode {
 
   <footer>
     <nav class="bottom-nav">
-      <div><span>📚</span><small>Library</small></div>
+      <div><span>📚</span><a href="resources.html"><small>Library</small></a></div>
       <div class="active" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})">
         <span>🏠</span><small>Home</small>
       </div>

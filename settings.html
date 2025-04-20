@@ -13,6 +13,7 @@
       padding: 0;
       background: #f4f4f4;
       color: #333;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .settings-container {
@@ -97,6 +98,48 @@
     input:checked + .slider:before {
       transform: translateX(24px);
     }
+
+    button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: #333;
+      color: #f4f6f8;
+    }
+
+    body.dark-mode .settings-container {
+      background: #444;
+      color: #f4f6f8;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .settings-header i {
+      color: #81c784;
+    }
+
+    body.dark-mode .settings-header i:hover {
+      color: #66bb6a;
+    }
+
+    body.dark-mode .slider {
+      background-color: #666;
+    }
+
+    body.dark-mode input:checked + .slider {
+      background-color: #81c784;
+    }
   </style>
 </head>
 <body>
@@ -116,6 +159,35 @@
         <span class="slider"></span>
       </label>
     </div>
+
+    <!-- Notification Settings -->
+    <div class="setting-item">
+      <span><i class="fas fa-bell"></i> Enable Notifications</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="enableNotifications" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Sound Settings -->
+    <div class="setting-item">
+      <span><i class="fas fa-volume-up"></i> Sound</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="sound" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Vibrate Settings -->
+    <div class="setting-item">
+      <span><i class="fas fa-vibrate"></i> Vibrate</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="vibrate" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <button onclick="saveSettings()">Save Settings</button>
   </div>
 
   <script>
@@ -123,7 +195,39 @@
       window.history.back();
     }
 
-    
+    // Initialize settings from localStorage
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const enableNotifications = document.getElementById("enableNotifications");
+    const sound = document.getElementById("sound");
+    const vibrate = document.getElementById("vibrate");
+
+    // Load settings from localStorage if available
+    darkModeToggle.checked = JSON.parse(localStorage.getItem('darkMode')) || false;
+    enableNotifications.checked = JSON.parse(localStorage.getItem('enableNotifications')) || false;
+    sound.checked = JSON.parse(localStorage.getItem('sound')) || false;
+    vibrate.checked = JSON.parse(localStorage.getItem('vibrate')) || false;
+
+    // Apply dark mode on page load
+    if (darkModeToggle.checked) {
+      document.body.classList.add('dark-mode');
+    }
+
+    function saveSettings() {
+      // Save settings to localStorage
+      localStorage.setItem('darkMode', darkModeToggle.checked);
+      localStorage.setItem('enableNotifications', enableNotifications.checked);
+      localStorage.setItem('sound', sound.checked);
+      localStorage.setItem('vibrate', vibrate.checked);
+
+      // Apply dark mode if checked
+      if (darkModeToggle.checked) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+
+      alert("Settings saved successfully!");
+    }
   </script>
 <script src="settings.js"></script>
 </body>

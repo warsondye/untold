@@ -1,224 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Calendar & Exams Timetable</title>
-    <style>
-        :root {
-            --bg-color: #e8f5e9;
-            --text-color: #000;
-            --container-bg: #ffffff;
-            --tab-bg: #2e7d32;
-            --tab-hover-bg: #1b5e20;
-            --table-header-bg: #2e7d32;
-            --table-border: #c8e6c9;
-        }
-        
-        .dark-mode {
-            --bg-color: #121212;
-            --text-color: #ffffff;
-            --container-bg: #1e1e1e;
-            --tab-bg: #388e3c;
-            --tab-hover-bg: #1b5e20;
-            --table-header-bg: #388e3c;
-            --table-border: #4caf50;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Academic Calendar & Exams Timetable</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg-color: #e8f5e9;
+      --text-color: #000;
+      --container-bg: #ffffff;
+      --tab-bg: #2e7d32;
+      --tab-hover-bg: #1b5e20;
+      --table-header-bg: #2e7d32;
+      --table-border: #c8e6c9;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            background: var(--container-bg);
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .tabs {
-            display: flex;
-            justify-content: space-between;
-            cursor: pointer;
-            padding: 12px;
-            background: var(--tab-bg);
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-        }
-        .tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            transition: background 0.3s;
-        }
-        .tab:hover {
-            background: var(--tab-hover-bg);
-        }
-        .tab-content {
-            display: none;
-            padding: 20px;
-        }
-        .active {
-            display: block;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: var(--container-bg);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        table, th, td {
-            border: 1px solid var(--table-border);
-        }
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background: var(--table-header-bg);
-            color: white;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            background: var(--bg-color);
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-        .theme-toggle {
-            margin: 20px auto;
-            padding: 10px 20px;
-            background: var(--tab-bg);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .theme-toggle:hover {
-            background: var(--tab-hover-bg);
-        }
-    </style>
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --container-bg: #1e1e1e;
+      --tab-bg: #388e3c;
+      --tab-hover-bg: #1b5e20;
+      --table-header-bg: #388e3c;
+      --table-border: #4caf50;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 900px;
+      margin: 20px auto;
+      background: var(--container-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .tabs {
+      display: flex;
+      background: var(--tab-bg);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tab:hover, .tab.active-tab {
+      background: var(--tab-hover-bg);
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: var(--container-bg);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid var(--table-border);
+    }
+
+    th {
+      background: var(--table-header-bg);
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      background: var(--bg-color);
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px auto;
+      padding: 10px 20px;
+      background: var(--tab-bg);
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--tab-hover-bg);
+    }
+
+    .theme-toggle i {
+      margin-right: 8px;
+    }
+
+    /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 15px;
+      background: var(--tab-bg);
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: var(--tab-hover-bg);
+    }
+
+    /* Scroll to Top Button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--tab-bg);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      display: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .scroll-to-top:hover {
+      background: var(--tab-hover-bg);
+    }
+
+    @media (max-width: 600px) {
+      .tab {
+        font-size: 14px;
+        padding: 10px 5px;
+      }
+    }
+  </style>
 </head>
 <body>
-   
-    <h1>Select the form</h1>
-    <div class="container">
-        <div class="tabs">
-            <div class="tab" onclick="showTab('form1')">Form One</div>
-            <div class="tab" onclick="showTab('form2')">Form Two</div>
-            <div class="tab" onclick="showTab('form3')">Form Three</div>
-        </div>
-        <div id="form1" class="tab-content active">
-            <h2>Form One Academic Calendar & Exams Timetable</h2>
-            <ul>
-                <li><strong>Semester 1:</strong> January - May</li>
-                <li><strong>Mid-Semester Break:</strong> March 15 - March 20</li>
-                <li><strong>Semester 2:</strong> August - December</li>
-                <li><strong>Holiday Break:</strong> December 20 - January 5</li>
-            </ul>
-            <h3>Exams Timetable</h3>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Course</th>
-                </tr>
-                <tr>
-                    <td>April 10</td>
-                    <td>9:00 AM - 12:00 PM</td>
-                    <td>English</td>
-                </tr>
-                <tr>
-                    <td>April 12</td>
-                    <td>2:00 PM - 5:00 PM</td>
-                    <td>Mathematics</td>
-                </tr>
-            </table>
-        </div>
 
-        <div id="form2" class="tab-content">
-            <h2>Form Two Academic Calendar & Exams Timetable</h2>
-            <ul>
-                <li><strong>Semester 1:</strong> January - May</li>
-                <li><strong>Mid-Semester Break:</strong> March 15 - March 20</li>
-                <li><strong>Semester 2:</strong> August - December</li>
-                <li><strong>Holiday Break:</strong> December 20 - January 5</li>
-            </ul>
-            <h3>Exams Timetable</h3>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Course</th>
-                </tr>
-                <tr>
-                    <td>April 10</td>
-                    <td>9:00 AM - 12:00 PM</td>
-                    <td>Biology</td>
-                </tr>
-                <tr>
-                    <td>April 12</td>
-                    <td>2:00 PM - 5:00 PM</td>
-                    <td>Physics</td>
-                </tr>
-            </table>
-        </div>
+  <button class="back-button" onclick="window.history.back()">
+    <i class="fas fa-arrow-left"></i> Back
+  </button>
 
-        <div id="form3" class="tab-content">
-            <h2>Form Three Academic Calendar & Exams Timetable</h2>
-            <ul>
-                <li><strong>Semester 1:</strong> January - May</li>
-                <li><strong>Mid-Semester Break:</strong> March 15 - March 20</li>
-                <li><strong>Semester 2:</strong> August - December</li>
-                <li><strong>Holiday Break:</strong> December 20 - January 5</li>
-            </ul>
-            <h3>Mock Timetable</h3>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Course</th>
-                </tr>
-                <tr>
-                    <td>March 24</td>
-                    <td>8:30-13:00</td>
-                    <td>French(orals) <br>Music</td>
-                </tr>
-                <tr>
-                    <td>April 12</td>
-                    <td>2:00 PM - 5:00 PM</td>
-                    <td>Geography</td>
-                </tr>
-            </table>
-        </div>
+  <h1><i class="fas fa-calendar-alt"></i> Academic Calendar & Exams Timetable</h1>
+
+  <div class="container">
+
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <i class="fas fa-adjust"></i> Toggle Dark/Light Mode
+    </button>
+
+    <div class="tabs">
+      <div class="tab active-tab" onclick="showTab('form1', this)"><i class="fas fa-user-graduate"></i> Form One</div>
+      <div class="tab" onclick="showTab('form2', this)"><i class="fas fa-user-graduate"></i> Form Two</div>
+      <div class="tab" onclick="showTab('form3', this)"><i class="fas fa-user-graduate"></i> Form Three</div>
     </div>
 
-    <script>
-        function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
-        }
+    <div id="form1" class="tab-content active">
+      <h2>Form One Academic Calendar & Exams Timetable</h2>
+      <ul>
+        <li><strong>Semester 1:</strong> January - May</li>
+        <li><strong>Mid-Semester Break:</strong> March 15 - March 20</li>
+        <li><strong>Semester 2:</strong> August - December</li>
+        <li><strong>Holiday Break:</strong> December 20 - January 5</li>
+      </ul>
+      <h3>Exams Timetable</h3>
+      <table>
+        <tr><th>Date</th><th>Time</th><th>Course</th></tr>
+        <tr><td>April 10</td><td>9:00 AM - 12:00 PM</td><td>English</td></tr>
+        <tr><td>April 12</td><td>2:00 PM - 5:00 PM</td><td>Mathematics</td></tr>
+      </table>
+    </div>
 
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
-    <script src="settings.js"></script>
+    <div id="form2" class="tab-content">
+      <h2>Form Two Academic Calendar & Exams Timetable</h2>
+      <ul>
+        <li><strong>Semester 1:</strong> January - May</li>
+        <li><strong>Mid-Semester Break:</strong> March 15 - March 20</li>
+        <li><strong>Semester 2:</strong> August - December</li>
+        <li><strong>Holiday Break:</strong> December 20 - January 5</li>
+      </ul>
+      <h3>Exams Timetable</h3>
+      <table>
+        <tr><th>Date</th><th>Time</th><th>Course</th></tr>
+        <tr><td>April 10</td><td>9:00 AM - 12:00 PM</td><td>Biology</td></tr>
+        <tr><td>April 12</td><td>2:00 PM - 5:00 PM</td><td>Physics</td></tr>
+      </table>
+    </div>
+
+    <div id="form3" class="tab-content">
+      <h2>Form Three Academic Calendar & Exams Timetable</h2>
+      <ul>
+        <li><strong>Semester 1:</strong> January - May</li>
+        <li><strong>Mid-Semester Break:</strong> March 15 - March 20</li>
+        <li><strong>Semester 2:</strong> August - December</li>
+        <li><strong>Holiday Break:</strong> December 20 - January 5</li>
+      </ul>
+      <h3>Mock Timetable</h3>
+      <table>
+        <tr><th>Date</th><th>Time</th><th>Course</th></tr>
+        <tr><td>March 24</td><td>8:30 - 13:00</td><td>French (orals) <br> Music</td></tr>
+        <tr><td>April 12</td><td>2:00 PM - 5:00 PM</td><td>Geography</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <button class="scroll-to-top" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    function showTab(tabId, element) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active-tab'));
+      
+      document.getElementById(tabId).classList.add('active');
+      element.classList.add('active-tab');
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    window.onscroll = function() {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        document.querySelector('.scroll-to-top').style.display = "block";
+      } else {
+        document.querySelector('.scroll-to-top').style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
 </body>
 </html>

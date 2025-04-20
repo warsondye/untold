@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Timetable</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    /* Your styles */
+/* Base Styles (Light Mode) */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  text-align: center;
+  color: #2e7d32;
+}
+
+input, select, button {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #1b5e20;
+}
+
+.countdown {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.settings-link {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.settings-link a {
+  color: #2e7d32;
+  text-decoration: none;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background: #333;
+  color: #f4f6f8;
+}
+
+body.dark-mode .container {
+  background: #444;
+  color: #f4f6f8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode h2 {
+  color: #81c784; /* Light green for header in dark mode */
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode button {
+  background: #555;
+  color: #f4f6f8;
+  border: 1px solid #777;
+}
+
+body.dark-mode button {
+  background: #81c784;
+}
+
+body.dark-mode button:hover {
+  background: #66bb6a;
+}
+
+body.dark-mode .settings-link a {
+  color: #81c784;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h2><i class="fas fa-calendar-alt"></i> My Personal Study Timetable</h2>
+      <button onclick="goToSettingsPage()"><i class="fas fa-cogs"></i> Settings</button>
+    </header>
+
+    <div class="form-group">
+      <input type="text" id="subject" placeholder="Subject">
+      <input type="time" id="time">
+      <select id="day">
+        <option value="">Select Day</option>
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+      </select>
+      <select id="category">
+        <option value="">Select Category</option>
+        <option>Science</option>
+        <option>Arts</option>
+        <option>Math</option>
+        <option>Sports</option>
+      </select>
+      <button class="btn-add" onclick="addTimetable()"><i class="fas fa-plus-circle"></i> Add</button>
+      <button class="download-btn" onclick="downloadPDF()"><i class="fas fa-download"></i> Download</button>
+    </div>
+
+    <ul id="timetable-list"></ul>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div class="settings-link">
+      <a href="settings.html">Go to Notification Settings</a>
+    </div>
+  </div>
+
+  <script>
+    let timetable = JSON.parse(localStorage.getItem('timetable')) || [];
+
+    function addTimetable() {
+      const subject = document.getElementById("subject").value;
+      const time = document.getElementById("time").value;
+      const day = document.getElementById("day").value;
+      const category = document.getElementById("category").value;
+      if (!subject || !time || !day || !category) {
+        alert("Please enter all fields.");
+        return;
+      }
+      timetable.push({ subject, time, day, category });
+      saveTimetable();
+      renderTimetable();
+      document.getElementById("subject").value = '';
+      document.getElementById("time").value = '';
+      document.getElementById("day").value = '';
+      document.getElementById("category").value = '';
+    }
+
+    function renderTimetable() {
+      const list = document.getElementById("timetable-list");
+      list.innerHTML = '';
+      timetable.forEach((entry, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span><strong>${entry.day}</strong>: ${entry.subject} at ${entry.time} (${entry.category})</span>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    function saveTimetable() {
+      localStorage.setItem("timetable", JSON.stringify(timetable));
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Study Timetable", 20, 20);
+      timetable.forEach((entry, index) => {
+        doc.text(`${index + 1}. ${entry.day}: ${entry.subject} at ${entry.time} (${entry.category})`, 20, 30 + index * 10);
+      });
+      doc.save("timetable.pdf");
+    }
+
+    function goToSettingsPage() {
+      window.location.href = "settings.html";
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const nextClass = timetable.find(entry => {
+        const classTime = new Date(`${now.toDateString()} ${entry.time}`);
+        return classTime > now;
+      });
+
+      if (nextClass) {
+        const nextClassTime = new Date(`${now.toDateString()} ${nextClass.time}`);
+        const timeDiff = nextClassTime - now;
+        const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById("countdown").textContent = `Next class: ${nextClass.subject} in ${hours}h ${minutes}m`;
+      }
+    }
+
+    setInterval(updateCountdown, 60000); // Update countdown every minute
+    renderTimetable();
+    updateCountdown();
+  </script>
+  <script src="settings.js"></script>
+</body>
+</html>
