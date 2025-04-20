@@ -8,7 +8,7 @@
  :root {
   --primary: #007bff;
   --secondary: #ff4081;
-  --bg-light: linear-gradient(to right, #7a4b0d, #fcc30a);
+  --bg-light: linear-gradient(to right, #1cd815, #e7e5df);
   --card-bg: #ffffff;
   --text-dark: #2c3e50;
   --gray: #7f8c8d;
@@ -372,10 +372,43 @@ body.dark-mode {
   --card-bg: #1e1e1e;
   --text-dark: #f5f5f5;
   --gray: #aaa;
-  --bg-light: linear-gradient(to right, #141e30, #243b55);
+  --bg-light: linear-gradient(to right, #0a0325, #080322);
   --border: #444;
   background: var(--bg-light);
   color: var(--text-dark);
+}
+.hero {
+  background: var(--bg-light);
+  padding: 5rem 1rem;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: var(--gray);
+  margin: 1rem 0;
+}
+
+.hero-text button {
+  background: var(--primary);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-text button:hover {
+  background: var(--secondary);
 }
 
 
@@ -383,6 +416,8 @@ body.dark-mode {
   <script src="settings.js"></script>
 </head>
 <body>
+  
+  
   <!-- Font Awesome CDN -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
@@ -403,12 +438,21 @@ body.dark-mode {
   <!-- Menu Dropdown -->
   <div id="menuDropdown" class="dropdown hidden">
     <ul>
-      <li><strong><i class="fas fa-bullhorn"></i> Announcement</strong></li>
-      <li><i class="fas fa-calendar-alt"></i> Academic Calendar</li>
-      <li><i class="fas fa-book"></i> Resources</li>
-      <li><i class="fas fa-clock"></i> Timetable</li>
+      <li>
+        <a href="announcement.html"><strong><i class="fas fa-bullhorn"></i> Announcement</strong></a>
+      </li>
+      <li>
+        <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Academic Calendar</a>
+      </li>
+      <li>
+        <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+      </li>
+      <li>
+        <a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a>
+      </li>
     </ul>
   </div>
+  
 
   <!-- Options Dropdown -->
   <div id="optionsDropdown" class="dropdown hidden">
@@ -420,7 +464,13 @@ body.dark-mode {
   </div>
 </header>
 
-
+<section class="hero">
+  <div class="hero-text">
+    <h1>Welcome to INSIGHT</h1>
+    <p>Your one-stop destination for the latest updates, Academic resources, and news. Stay informed, stay ahead!</p>
+    <button onclick="scrollToNews()">Discover More</button>
+  </div>
+</section>
   <main id="home">
     <section class="slider" id="slider">
       <div class="slider-container" id="sliderContainer">
