@@ -602,6 +602,20 @@ body {
     padding: 18px 25px; /* Larger padding for better touch targets */
   }
 }
+/* Close button style */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #f44336; /* Red color on hover */
+}
 
 
   </style>
@@ -630,6 +644,9 @@ body {
  <!-- Menu Icon -->
  
  <div id="menuDropdown" class="slide-menu">
+  <div class="close-btn">
+    <i class="fas fa-times"></i> <!-- Close icon -->
+  </div>
    <ul>
      <li><a href="announcement.html"><strong><i class="fas fa-bullhorn"></i> Announcement</strong></a></li>
      <li><a href="calendar.html"><i class="fas fa-calendar-alt"></i> Academic Calendar</a></li>
@@ -721,6 +738,20 @@ body {
         options.classList.remove('active');
       }
     });
+// Select menu, close button, and menu icon
+const menu = document.querySelector('.slide-menu');
+const closeBtn = document.querySelector('.close-btn');
+const menuIcon = document.querySelector('.menu-icon');
+
+// Open the menu
+menuIcon.addEventListener('click', () => {
+  menu.classList.add('active');
+});
+
+// Close the menu
+closeBtn.addEventListener('click', () => {
+  menu.classList.remove('active');
+});
 
     let currentPage = 1;
 
