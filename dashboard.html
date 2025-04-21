@@ -8,7 +8,7 @@
  :root {
   --primary: #007bff;
   --secondary: #ff4081;
-  --bg-light: linear-gradient(to right, #1cd815, #e7e5df);
+  --bg-light: linear-gradient(to right,  #075f1d, #075f1d);
   --card-bg: #ffffff;
   --text-dark: #2c3e50;
   --gray: #7f8c8d;
@@ -44,14 +44,13 @@ body {
   z-index: 100;
 }
 
-.menu-icon,
 .options-icon {
   font-size: 1.7rem;
   cursor: pointer;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.menu-icon:hover,
+
 .options-icon:hover {
   transform: scale(1.15);
   color: var(--primary);
@@ -407,6 +406,49 @@ body.dark-mode {
     .hero button:hover {
       background: var(--secondary);
     }
+    .slide-menu {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  transition: left 0.3s ease;
+  z-index: 200;
+}
+
+.slide-menu ul li {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+.slide-menu ul li a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.slide-menu ul li:hover {
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+/* When menu is active */
+.slide-menu.active {
+  left: 0;
+}
+
+/* Dark mode styles */
+body.dark-mode .slide-menu {
+  background: #2c2c2c;
+  color: #f0f0f0;
+}
+
 
 
   </style>
@@ -432,24 +474,24 @@ body.dark-mode {
     </div>
   </div>
 
-  <!-- Menu Dropdown -->
-  <div id="menuDropdown" class="dropdown hidden">
-    <ul>
-      <li>
-        <a href="announcement.html"><strong><i class="fas fa-bullhorn"></i> Announcement</strong></a>
-      </li>
-      <li>
-        <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Academic Calendar</a>
-      </li>
-      <li>
-        <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
-      </li>
-      <li>
-        <a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a>
-      </li>
-    </ul>
-  </div>
-  
+  <!-- Slide Menu -->
+<div id="menuDropdown" class="slide-menu">
+  <ul>
+    <li>
+      <a href="announcement.html"><strong><i class="fas fa-bullhorn"></i> Announcement</strong></a>
+    </li>
+    <li>
+      <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Academic Calendar</a>
+    </li>
+    <li>
+      <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+    </li>
+    <li>
+      <a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a>
+    </li>
+  </ul>
+</div>
+
 
   <!-- Options Dropdown -->
   <div id="optionsDropdown" class="dropdown hidden">
@@ -507,12 +549,31 @@ body.dark-mode {
   </footer>
 
   <script>
-    function toggleDropdown(id) {
-      const dropdown = document.getElementById(id);
-      const other = id === 'menuDropdown' ? 'optionsDropdown' : 'menuDropdown';
-      document.getElementById(other).classList.add('hidden');
-      dropdown.classList.toggle('hidden');
-    }
+ 
+ function toggleDropdown(id) {
+  const element = document.getElementById(id);
+
+  if (id === 'menuDropdown') {
+    element.classList.toggle('active');
+  } else {
+    element.classList.toggle('hidden');
+  }
+}
+function toggleDropdown(id) {
+    document.getElementById(id).classList.toggle('hidden');
+  }
+
+  // Optional: close dropdown when clicking outside
+  window.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('optionsDropdown');
+    const menu = document.getElementById('menuDropdown');
+    if (!e.target.closest('.options-icon')) dropdown.classList.add('hidden');
+    if (!e.target.closest('.menu-icon')) menu.classList.remove('active');
+  });
+
+  document.querySelector('.menu-icon').addEventListener('click', () => {
+    document.getElementById('menuDropdown').classList.toggle('active');
+  });
 
     window.addEventListener('click', function (e) {
       if (!e.target.closest('.menu-icon') && !e.target.closest('#menuDropdown')) {
@@ -577,6 +638,7 @@ body.dark-mode {
         console.error('Error fetching news:', error);
       }
     }
+   
 
     document.getElementById('loadMoreBtn').addEventListener('click', loadNews);
     loadNews();

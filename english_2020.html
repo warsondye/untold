@@ -5,208 +5,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WASSCE English objectives</title>
     <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-h1{font-size: 20px;}
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #006400, rgb(8, 66, 8)); 
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            transition: background 0.5s ease;
-        }
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Header and Navigation */
-        nav {
-            background: rgba(4, 134, 47, 0.6);
-            padding: 15px 30px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.3s ease;
-        }
-        nav img {
-            height: 40px; /* Adjust logo size */
-        }
-        nav a {
-            color: white;
-            margin: 0 20px;
-            text-decoration: none;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #FFD700; /* Gold on hover */
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #004d00, #0b3f0b);
+    color: white;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: background 0.5s ease;
+}
 
-        /* Home Page Layout */
-        .home-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-        }
+/* Navigation Bar */
+nav {
+    background: rgba(4, 134, 47, 0.8);
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
 
-        .cta-button {
-            background-color: #FFD700; /* Gold */
-            color: #006400; /* Green */
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 22px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
+nav img {
+    height: 40px;
+}
 
-        .cta-button:hover {
-            background-color: #006400; /* Dark Green */
-            transform: scale(1.05);
-        }
+nav span {
+    font-size: 20px;
+    font-weight: bold;
+}
 
-        /* Quiz Container */
-        .container {
-            background: #fff;
-            color: black;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            margin-top: 70px;
-            text-align: left;
-            display: none;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-        }
+nav a {
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    position: relative;
+    transition: color 0.3s ease;
+}
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: #FFD700;
+    transition: width 0.3s;
+}
 
-        /* Buttons */
-        button {
-            padding: 12px 20px;
-            background-color: #006400; /* Dark Green */
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            margin-top: 20px;
-            width: 100%;
-        }
+nav a:hover::after {
+    width: 100%;
+}
 
-        button:hover {
-            background-color: #FFD700; /* Gold */
-            transform: scale(1.05);
-        }
+nav a:hover {
+    color: #FFD700;
+}
 
-        /* Timer & Progress Bar */
-        .timer {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+/* Home Section */
+.home-container {
+    text-align: center;
+    padding: 30px 15px;
+    animation: fadeIn 1s ease-in-out;
+}
 
-        .progress-bar {
-            background: #ddd;
-            height: 8px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
+.home-container h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
 
-        .progress {
-            height: 100%;
-            width: 0;
-            background: #006400; /* Dark Green */
-            transition: width 0.5s ease;
-        }
+.home-container p {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
 
-        /* Question Section */
-        .question {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            animation: fadeIn 0.8s forwards;
-        }
+.cta-button {
+    margin-top: 20px;
+    background-color: #FFD700;
+    color: #004d00;
+    padding: 15px 35px;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-        .options li {
-            background: #006400; /* Dark Green */
-            color: white;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
+.cta-button:hover {
+    background-color: #006400;
+    color: #fff;
+    transform: scale(1.05);
+}
 
-        .options li:hover {
-            background: #FFD700; /* Gold */
-            transform: scale(1.05);
-        }
+/* Quiz Container */
+.container {
+    background: #fff;
+    color: #000;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    width: 90%;
+    margin-top: 30px;
+    text-align: left;
+    display: none;
+    animation: fadeIn 1s forwards;
+}
 
-        .correct {
-            background: #28a745 !important;
-        }
+.question {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 
-        .wrong {
-            background: #dc3545 !important;
-        }
+.options li {
+    background: #006400;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .score {
-            font-size: 20px;
-            margin-top: 15px;
-            color: #333;
-        }
+.options li:hover {
+    background: #FFD700;
+    color: #004d00;
+    transform: translateY(-2px);
+}
 
-        .answer-display {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #333;
-        }
+.correct {
+    background: #28a745 !important;
+}
 
-        /* Mobile Friendly */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
+.wrong {
+    background: #dc3545 !important;
+}
 
-            .question {
-                font-size: 18px;
-            }
+/* Buttons */
+button {
+    padding: 12px 24px;
+    background-color: #006400;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
 
-            button {
-                font-size: 16px;
-            }
+button:hover {
+    background-color: #FFD700;
+    color: #004d00;
+    transform: scale(1.05);
+}
 
-            .cta-button {
-                font-size: 18px;
-                padding: 12px 25px;
-            }
-        }
+#pause-btn {
+    margin-top: 10px;
+    background-color: #333;
+}
+
+/* Progress & Timer */
+.timer {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #004d00;
+}
+
+.progress-bar {
+    background: #ccc;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background: #006400;
+    transition: width 0.5s ease;
+}
+
+.answer-display {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.back-arrow {
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+.score {
+    font-size: 20px;
+    font-weight: bold;
+    color: #006400;
+    margin-top: 15px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav span {
+        font-size: 16px;
+    }
+
+    .home-container h1 {
+        font-size: 22px;
+    }
+
+    .cta-button {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+
+    .question {
+        font-size: 18px;
+    }
+
+    button {
+        font-size: 15px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -216,7 +267,7 @@ h1{font-size: 20px;}
         <img src="logo2.png" alt="St. Augustine's College Logo">
         <span style="color:white; font-size: 22px; font-weight: bold;">WASSCE English Objective Test (2020)</span>
         <div>
-            <a href="library.html">back</a>
+             <a href="javascript:history.back()">←</a>
             <a href="english_b.html">section B</a>
         
         </div>
@@ -240,6 +291,8 @@ h1{font-size: 20px;}
         <button id="next-btn" onclick="nextQuestions()" style="display:none;">Next</button>
         <div id="score" class="score"></div>
         <button id="restart-btn" onclick="restartQuiz()" style="display:none;">Restart Quiz</button>
+        <button id="pause-btn" onclick="togglePause()">Pause</button>
+
     </div>
 
 
@@ -249,7 +302,6 @@ h1{font-size: 20px;}
             { question: "Whilst Lydia became......in the course of the contest, Lena was <u>confident</u>. ", options: ["A. Assuring", "B. Boastful", "C. Incensed", "D. Jittery"], answer: "D" },
             { question: "We thought Jane was the <u>instigator</u> of the take-over; it turned out she was rather the.......   ", options: ["A. Accomplice", "B. Troubleshooter", "C. Advisor", "D. Cool-head"], answer: "D" },
         ];
-        let currentIndex = 0, correctAnswers = 0, totalAnswered = 0, timer;
 
         function startTimer() {
             let timeLeft = 15;
@@ -264,7 +316,30 @@ h1{font-size: 20px;}
                 }
             }, 1000);
         }
-
+        let currentIndex = 0, correctAnswers = 0, totalAnswered = 0;
+        let timer, timeLeft = 15, isPaused = false;
+    
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = 15;
+            document.getElementById("timer").textContent = timeLeft;
+            timer = setInterval(() => {
+                if (!isPaused) {
+                    timeLeft--;
+                    document.getElementById("timer").textContent = timeLeft;
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        nextQuestions();
+                    }
+                }
+            }, 1000);
+        }
+    
+        function togglePause() {
+            isPaused = !isPaused;
+            document.getElementById("pause-btn").textContent = isPaused ? "Play" : "Pause";
+        }
+    
         function displayQuestions() {
             let quizContainer = document.getElementById("quiz");
             quizContainer.innerHTML = "";
@@ -277,8 +352,11 @@ h1{font-size: 20px;}
             quizContainer.innerHTML = questionHTML;
             document.getElementById("progress").style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
             startTimer();
+            document.getElementById("pause-btn").style.display = "inline-block"; // Show pause button
+            document.getElementById("pause-btn").textContent = "Pause"; // Reset button text
+            isPaused = false;
         }
-
+    
         function selectAnswer(element, correctAnswer, index) {
             clearInterval(timer);
             let options = element.parentElement.querySelectorAll("li");
@@ -292,8 +370,9 @@ h1{font-size: 20px;}
             }
             totalAnswered++;
             document.getElementById("next-btn").style.display = "block";
+            document.getElementById("pause-btn").style.display = "none"; // Hide pause on answer
         }
-
+    
         function nextQuestions() {
             currentIndex++;
             if (currentIndex < questions.length) {
@@ -304,9 +383,10 @@ h1{font-size: 20px;}
                 document.getElementById("score").innerHTML = `Score: ${correctAnswers}/${totalAnswered}`;
                 document.getElementById("next-btn").style.display = "none";
                 document.getElementById("restart-btn").style.display = "block";
+                document.getElementById("pause-btn").style.display = "none";
             }
         }
-
+    
         function restartQuiz() {
             if (confirm("Are you sure you want to restart?")) {
                 currentIndex = 0; correctAnswers = 0; totalAnswered = 0;
@@ -317,14 +397,14 @@ h1{font-size: 20px;}
                 displayQuestions();
             }
         }
-
+    
         function startQuiz() {
-            // Hide home page and show the quiz page
             document.querySelector(".home-container").style.display = "none"; 
             document.getElementById("quiz-container").style.display = "block"; 
-            document.getElementById("navbar").style.display = "block"; // Show navigation bar
+            document.getElementById("navbar").style.display = "block";
             displayQuestions();
         }
     </script>
+    
 </body>
 </html>
