@@ -406,49 +406,202 @@ body.dark-mode {
     .hero button:hover {
       background: var(--secondary);
     }
-    .slide-menu {
+ 
+   /* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Container */
+.container {
+  padding: 20px;
+}
+
+/* Slide-in Menu */
+/* Slide Menu */
+.slide-menu {
   position: fixed;
   top: 0;
-  left: -260px;
-  width: 240px;
-  height: 100vh;
-  background: #fff;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  transition: left 0.3s ease;
-  z-index: 200;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #3c8d4f;
+  transition: 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.slide-menu ul li {
-  margin: 1rem 0;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  cursor: pointer;
-}
-
-.slide-menu ul li a {
-  text-decoration: none;
-  color: var(--text-dark);
-  font-size: 1rem;
-}
-
-.slide-menu ul li:hover {
-  color: var(--primary);
-  transform: translateX(5px);
-}
-
-/* When menu is active */
 .slide-menu.active {
   left: 0;
 }
 
-/* Dark mode styles */
-body.dark-mode .slide-menu {
-  background: #2c2c2c;
-  color: #f0f0f0;
+.slide-menu ul {
+  list-style-type: none;
+  padding: 0;
 }
 
+.slide-menu ul li {
+  padding: 15px 20px;
+  text-align: left;
+}
+
+.slide-menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.slide-menu ul li a i {
+  margin-right: 10px;
+}
+
+.slide-menu ul li a:hover {
+  background-color: #2c6b3c;
+  padding-left: 10px;
+}
+
+/* Options Dropdown */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 5px;
+  min-width: 150px;
+}
+
+.dropdown.active {
+  display: block;
+}
+
+.dropdown ul {
+  list-style-type: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  padding: 10px 15px;
+}
+
+.dropdown ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.dropdown ul li:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown ul li a:hover {
+  color: #3c8d4f;
+  padding-left: 5px;
+}
+
+/* Menu and Options Icons */
+.menu-icon, .options-icon {
+  padding: 5px;
+  background-color: #010501;
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 20px;
+  text-align: center;
+}
+
+.menu-icon:hover, .options-icon:hover {
+  background-color: #d6ddd8;
+  transform: scale(1.1);
+}
+
+/* Mobile-Friendly Enhancements */
+@media (max-width: 768px) {
+  .slide-menu {
+    width: 70%; /* Adjust width to take up 70% of the screen */
+    left: -100%;
+  }
+
+  .slide-menu.active {
+    left: 0; /* Show menu when active */
+  }
+
+  .slide-menu ul li {
+    padding: 15px 30px;
+  }
+
+  .menu-icon, .options-icon {
+    padding: 12px;
+    font-size: 22px; /* Larger icons for mobile */
+    margin: 15px;
+  }
+
+  .dropdown {
+    width: 100%; /* Ensure dropdown takes full width */
+    right: 0;
+  }
+
+  /* Increase the size of the links for better touch support */
+  .slide-menu ul li a {
+    font-size: 18px;
+  }
+
+  /* Adjust dropdown styles for better touch */
+  .dropdown ul li {
+    padding: 15px;
+  }
+
+  /* Add icons to the dropdown links */
+  .dropdown ul li a i {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-icon, .options-icon {
+    padding: 5px;
+    font-size: 20px; /* Even larger icons for very small screens */
+    margin: 20px;
+  }
+
+  .slide-menu {
+    width: 80%; /* Increase width on very small screens */
+    left: -100%;
+  }
+
+  .slide-menu.active {
+    left: 0; /* Show menu when active */
+  }
+
+  .slide-menu ul li {
+    padding: 18px 30px; /* Larger padding for easier touch interaction */
+  }
+
+  .slide-menu ul li a {
+    font-size: 20px; /* Larger text for better readability */
+  }
+
+  .dropdown ul li {
+    padding: 18px 25px; /* Larger padding for better touch targets */
+  }
+}
 
 
   </style>
@@ -474,33 +627,27 @@ body.dark-mode .slide-menu {
     </div>
   </div>
 
-  <!-- Slide Menu -->
-<div id="menuDropdown" class="slide-menu">
-  <ul>
-    <li>
-      <a href="announcement.html"><strong><i class="fas fa-bullhorn"></i> Announcement</strong></a>
-    </li>
-    <li>
-      <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Academic Calendar</a>
-    </li>
-    <li>
-      <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
-    </li>
-    <li>
-      <a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a>
-    </li>
-  </ul>
+ <!-- Menu Icon -->
+ 
+ <div id="menuDropdown" class="slide-menu">
+   <ul>
+     <li><a href="announcement.html"><strong><i class="fas fa-bullhorn"></i> Announcement</strong></a></li>
+     <li><a href="calendar.html"><i class="fas fa-calendar-alt"></i> Academic Calendar</a></li>
+     <li><a href="resources.html"><i class="fas fa-book"></i> Resources</a></li>
+     <li><a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a></li>
+   </ul>
+ </div>
+
+ <!-- Options Icon -->
+
+ <div id="optionsDropdown" class="dropdown">
+   <ul>
+     <li><strong><i class="fas fa-info-circle"></i> About</strong></li>
+     <li><i class="fas fa-cog"></i> <a href="settings.html">Settings</a></li>
+     <li><i class="fas fa-question-circle"></i> More Info</li>
+   </ul>
+ </div>
 </div>
-
-
-  <!-- Options Dropdown -->
-  <div id="optionsDropdown" class="dropdown hidden">
-    <ul>
-      <li><strong><i class="fas fa-info-circle"></i> About</strong></li>
-      <li><i class="fas fa-cog"></i> <a href="settings.html">Settings</a></li>
-      <li><i class="fas fa-question-circle"></i> More Info</li>
-    </ul>
-  </div>
 </header>
 
 <section class="hero">
@@ -549,38 +696,29 @@ body.dark-mode .slide-menu {
   </footer>
 
   <script>
- 
- function toggleDropdown(id) {
-  const element = document.getElementById(id);
+  // Toggle the slide-in menu visibility
+  document.querySelector('.menu-icon').addEventListener('click', function () {
+      document.getElementById('menuDropdown').classList.toggle('active');
+    });
 
-  if (id === 'menuDropdown') {
-    element.classList.toggle('active');
-  } else {
-    element.classList.toggle('hidden');
-  }
-}
-function toggleDropdown(id) {
-    document.getElementById(id).classList.toggle('hidden');
-  }
+    // Toggle the options dropdown visibility
+    document.querySelector('.options-icon').addEventListener('click', function () {
+      document.getElementById('optionsDropdown').classList.toggle('active');
+    });
 
-  // Optional: close dropdown when clicking outside
-  window.addEventListener('click', function (e) {
-    const dropdown = document.getElementById('optionsDropdown');
-    const menu = document.getElementById('menuDropdown');
-    if (!e.target.closest('.options-icon')) dropdown.classList.add('hidden');
-    if (!e.target.closest('.menu-icon')) menu.classList.remove('active');
-  });
-
-  document.querySelector('.menu-icon').addEventListener('click', () => {
-    document.getElementById('menuDropdown').classList.toggle('active');
-  });
-
+    // Optional: Close dropdowns when clicking outside
     window.addEventListener('click', function (e) {
+      const menu = document.getElementById('menuDropdown');
+      const options = document.getElementById('optionsDropdown');
+
+      // Close menu if clicked outside
       if (!e.target.closest('.menu-icon') && !e.target.closest('#menuDropdown')) {
-        document.getElementById('menuDropdown').classList.add('hidden');
+        menu.classList.remove('active');
       }
+
+      // Close options dropdown if clicked outside
       if (!e.target.closest('.options-icon') && !e.target.closest('#optionsDropdown')) {
-        document.getElementById('optionsDropdown').classList.add('hidden');
+        options.classList.remove('active');
       }
     });
 
