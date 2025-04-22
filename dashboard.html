@@ -2,879 +2,323 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Insight Educational Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <style>
- :root {
-  --primary: #007bff;
-  --secondary: #ff4081;
-  --bg-light: linear-gradient(to right,  #075f1d, #075f1d);
-  --card-bg: #ffffff;
-  --text-dark: #2c3e50;
-  --gray: #7f8c8d;
-  --border: #ecf0f1;
-  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #075f1d, #075f1d);
+      color: #2c3e50;
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-  scroll-behavior: smooth;
-}
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-body {
-  background: var(--bg-light);
-  color: var(--text-dark);
-  line-height: 1.6;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* Top Navigation */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background: var(--card-bg);
-  box-shadow: var(--shadow-light);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+    .logo img {
+      width: 35px;
+      height: 35px;
+    }
 
-.options-icon {
-  font-size: 1.7rem;
-  cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
+    .logo span {
+      font-weight: bold;
+      font-size: 1.6rem;
+      color: #007bff;
+    }
 
+    .menu-icon, .options-icon {
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #333;
+    }
 
-.options-icon:hover {
-  transform: scale(1.15);
-  color: var(--primary);
-}
+    .menu-drawer, .options-dropdown {
+      display: none;
+      position: absolute;
+      top: 70px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: 1000;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
+    .menu-drawer {
+      left: 10px;
+      width: 200px;
+    }
 
-.logo img {
-  width: 35px;
-  height: 35px;
-}
+    .options-dropdown {
+      right: 10px;
+      width: 160px;
+    }
 
-.logo span {
-  font-weight: bold;
-  font-size: 1.6rem;
-  color: var(--primary);
-}
+    .menu-drawer ul, .options-dropdown ul {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+    }
 
-/* Dropdown */
-.dropdown {
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-hover);
-  padding: 0.8rem;
-  width: 240px;
-  animation: fadeIn 0.4s ease;
-  z-index: 99;
-}
+    .menu-drawer li, .options-dropdown li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+    .menu-drawer li:last-child, .options-dropdown li:last-child {
+      border-bottom: none;
+    }
 
-.dropdown ul li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 12px;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.3s;
-  cursor: pointer;
-  color: var(--text-dark);
-}
+    .menu-drawer li a, .options-dropdown li a {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.dropdown ul li i {
-  color: var(--primary);
-  min-width: 20px;
-  text-align: center;
-}
-
-.dropdown ul li:hover {
-  background: #f0f0f0;
-  transform: translateX(5px);
-}
-
-.hidden {
-  display: none;
-}
-
-/* Slider */
-.slider {
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.slider img {
-  width: 90%;
-  max-width: 320px;
-  border-radius: 16px;
-  margin: 1rem auto;
-  box-shadow: var(--shadow-light);
-}
-
-/* Dots */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.dots span {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #ccc;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-.dots span.active {
-  background: var(--primary);
-}
-
-/* News Section */
-.news {
-  padding: 2rem 1rem;
-}
-
-.news h3 {
-  color: var(--primary);
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.8rem;
-}
-
-.news-grid img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-
-/* News Box */
-.box {
-  background: var(--card-bg);
-  border-left: 6px solid var(--primary);
-  border-radius: 14px;
-  padding: 1.2rem;
-  box-shadow: var(--shadow-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.box strong {
-  font-size: 1.2rem;
-  color: var(--text-dark);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.box p {
-  font-size: 0.95rem;
-  color: var(--gray);
-}
-
-.box a {
-  color: var(--primary);
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 5px;
-}
-
-.box:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-}
-
-/* Bottom Navigation */
-.bottom-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0.7rem 0;
-  background: #fff;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid var(--border);
-  z-index: 100;
-}
-
-.bottom-nav div {
-  text-align: center;
-  color: #999;
-  cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.bottom-nav div:hover {
-  transform: scale(1.1);
-  color: var(--primary);
-}
-
-.bottom-nav .active {
-  color: var(--secondary);
-}
-
-.bottom-nav span {
-  font-size: 1.5rem;
-  display: block;
-}
-
-.bottom-nav small {
-  font-size: 0.75rem;
-}
-body.dark-mode .dropdown {
-  background: #2c2c2c;
-  border: 1px solid var(--border);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-mode .dropdown ul li {
-  color: #f0f0f0; /* Light color for dark mode */
-}
-
-body.dark-mode .dropdown ul li i {
-  color: var(--primary); /* Ensure icons are visible */
-}
-
-body.dark-mode .dropdown ul li:hover {
-  background: rgba(255, 255, 255, 0.1); /* Slight hover effect */
-}
-
-body.dark-mode .dropdown ul li strong {
-  color: var(--secondary); /* Highlight "strong" items with a different color */
-}
-
-/* Back to Top Button */
-#backToTopBtn,
-#scrollTopBtn {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  display: none;
-  z-index: 999;
-  background-color: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 12px 15px;
-  font-size: 1.4rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-hover);
-  transition: background 0.3s ease, opacity 0.3s ease;
-}
-
-#backToTopBtn:hover,
-#scrollTopBtn:hover {
-  background-color: var(--secondary);
-}
-
-/* Slide Display */
-.slide {
-  display: none;
-}
-
-.slide.active {
-  display: block;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .news-grid {
-    grid-template-columns: 1fr;
-  }
-
-  #scrollTopBtn {
-    padding: 10px 13px;
-    font-size: 1.2rem;
-  }
-
-  .news button,
-  .load-more button {
-    width: 100%;
-    font-size: 1rem;
-  }
-
-
-
-
-  .bottom-nav {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0.5rem;
-  }
-
-  .bottom-nav div {
-    flex: 1 1 20%;
-  }
-}
-@media (max-width: 768px) {
-  .top-bar {
-    flex-wrap: wrap;
-    padding: 0.7rem 1rem;
-  }
-
-  .logo span {
-    font-size: 1.3rem;
-  }
-
-  .dropdown {
-    left: 5%;
-    width: 90%;
-  }
-}
-.toggle-mode {
-  margin-left: auto;
-  margin-right: 1rem;
-}
-.toggle-mode input {
-  display: none;
-}
-.toggle-mode label {
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-.toggle-mode label:hover {
-  color: var(--secondary);
-}
-
-body.dark-mode {
-  --card-bg: #1e1e1e;
-  --text-dark: #f5f5f5;
-  --gray: #aaa;
-  --bg-light: linear-gradient(to right, #0a0325, #080322);
-  --border: #444;
-  background: var(--bg-light);
-  color: var(--text-dark);
-}
-.hero {
+    /* Hero Section */
+    .hero {
       text-align: center;
-      padding: 3rem 1rem 2rem;
+      padding: 5rem 2rem;
+      background: url('hero-bg.jpg') no-repeat center center/cover;
+      border-radius: 16px;
+      margin: 2rem auto;
+      max-width: 900px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      color: white;
     }
 
     .hero h1 {
-      font-size: 1.8rem;
-      color: var(--primary);
+      font-size: 3rem;
+      color: #fff;
+      font-weight: 600;
     }
 
     .hero p {
-      font-size: 1rem;
-      color: var(--gray);
-      margin: 0.8rem 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
     }
 
     .hero button {
-      padding: 10px 20px;
+      margin-top: 1rem;
+      padding: 12px 24px;
       border: none;
-      border-radius: 25px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 1rem;
+      border-radius: 30px;
+      background: #007bff;
+      color: white;
       cursor: pointer;
-      transition: background 0.3s;
+      font-size: 1.1rem;
+      transition: background 0.3s, transform 0.3s;
     }
 
     .hero button:hover {
-      background: var(--secondary);
+      background: #ff4081;
+      transform: scale(1.05);
     }
- 
-   /* Global Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-}
 
-/* Container */
-.container {
-  padding: 20px;
-}
+    /* News Section */
+    .news-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
 
-/* Slide-in Menu */
-/* Slide Menu */
-.slide-menu {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  width: 250px;
-  height: 100%;
-  background-color: #3c8d4f;
-  transition: 0.3s ease;
-  z-index: 1000;
-  padding-top: 60px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-}
+    .news-section h3 {
+      text-align: center;
+      color: #007bff;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
 
-.slide-menu.active {
-  left: 0;
-}
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
 
-.slide-menu ul {
-  list-style-type: none;
-  padding: 0;
-}
+    /* Card Styling */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      border: 1px solid #f1f1f1;
+    }
 
-.slide-menu ul li {
-  padding: 15px 20px;
-  text-align: left;
-}
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
 
-.slide-menu ul li a {
-  color: white;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  transition: 0.3s ease;
-}
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
 
-.slide-menu ul li a i {
-  margin-right: 10px;
-}
+    .news-card h4 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
 
-.slide-menu ul li a:hover {
-  background-color: #2c6b3c;
-  padding-left: 10px;
-}
+    .news-card p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.5;
+    }
 
-/* Options Dropdown */
-.dropdown {
-  display: none;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  border-radius: 5px;
-  min-width: 150px;
-}
+    /* Footer and Navigation */
+    footer {
+      background: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid #ecf0f1;
+      font-size: 0.9rem;
+      color: #555; 
+    }
 
-.dropdown.active {
-  display: block;
-}
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      padding: 0.7rem 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ecf0f1;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+    }
 
-.dropdown ul {
-  list-style-type: none;
-  padding: 10px 0;
-  margin: 0;
-}
+    .bottom-nav div {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #999;
+    }
 
-.dropdown ul li {
-  padding: 10px 15px;
-}
-
-.dropdown ul li a {
-  text-decoration: none;
-  color: black;
-  display: block;
-  font-size: 15px;
-  transition: 0.3s ease;
-}
-
-.dropdown ul li:hover {
-  background-color: #f5f5f5;
-}
-
-.dropdown ul li a:hover {
-  color: #3c8d4f;
-  padding-left: 5px;
-}
-
-/* Menu and Options Icons */
-.menu-icon, .options-icon {
-  padding: 5px;
-  background-color: #ebf3eb;
-  color: black;
-  cursor: pointer;
-  border-radius: 50%;
-  display: inline-block;
-  margin: 10px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  font-size: 20px;
-  text-align: center;
-}
-
-.menu-icon:hover, .options-icon:hover {
-  background-color: #d6ddd8;
-  transform: scale(1.1);
-}
-
-/* Mobile-Friendly Enhancements */
-@media (max-width: 768px) {
-  .slide-menu {
-    width: 70%; /* Adjust width to take up 70% of the screen */
-    left: -100%;
-  }
-
-  .slide-menu.active {
-    left: 0; /* Show menu when active */
-  }
-
-  .slide-menu ul li {
-    padding: 15px 30px;
-  }
-
-  .menu-icon, .options-icon {
-    padding: 12px;
-    font-size: 22px; /* Larger icons for mobile */
-    margin: 15px;
-  }
-
-  .dropdown {
-    width: 100%; /* Ensure dropdown takes full width */
-    right: 0;
-  }
-
-  /* Increase the size of the links for better touch support */
-  .slide-menu ul li a {
-    font-size: 18px;
-  }
-
-  /* Adjust dropdown styles for better touch */
-  .dropdown ul li {
-    padding: 15px;
-  }
-
-  /* Add icons to the dropdown links */
-  .dropdown ul li a i {
-    margin-right: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .menu-icon, .options-icon {
-    padding: 5px;
-    font-size: 20px; /* Even larger icons for very small screens */
-    margin: 20px;
-  }
-
-  .slide-menu {
-    width: 80%; /* Increase width on very small screens */
-    left: -100%;
-  }
-
-  .slide-menu.active {
-    left: 0; /* Show menu when active */
-  }
-
-  .slide-menu ul li {
-    padding: 18px 30px; /* Larger padding for easier touch interaction */
-  }
-
-  .slide-menu ul li a {
-    font-size: 20px; /* Larger text for better readability */
-  }
-
-  .dropdown ul li {
-    padding: 18px 25px; /* Larger padding for better touch targets */
-  }
-}
-/* Close button style */
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.close-btn:hover {
-  color: #f44336; /* Red color on hover */
-}
-
-
+    .bottom-nav div:hover {
+      color: #007bff;
+    }
   </style>
-  <script src="settings.js"></script>
 </head>
 <body>
-  
-  
-  <!-- Font Awesome CDN -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <header>
+    <div class="top-bar">
+      <div class="menu-icon"><i class="fas fa-bars"></i></div>
+      <div class="logo">
+        <img src="insight.jpg" alt="Logo" />
+        <span>INSIGHT</span>
+      </div>
+      <div class="options-icon"><i class="fas fa-ellipsis-v"></i></div>
+    </div>
+  </header>
 
-<header>
-  <div class="top-bar">
-    <div class="menu-icon" onclick="toggleDropdown('menuDropdown')">
-      <i class="fas fa-bars"></i>
-    </div>
-    <div class="logo">
-      <img src="insight .jpg" alt="Logo" />
-      <span>INSIGHT</span>
-    </div>
-    <div class="options-icon" onclick="toggleDropdown('optionsDropdown')">
-      <i class="fas fa-ellipsis-v"></i>
-    </div>
+  <!-- Menu Drawer -->
+  <div id="menuDrawer" class="menu-drawer">
+    <ul>
+      <li><a href="resources.html"><i class="fas fa-book"></i> Academic Resources</a></li>
+      <li><a href="calendar.html"><i class="fas fa-book-reader"></i> Academic Calendar</a></li>
+      <li><a href="timetable.html"><i class="fas fa-calendar-alt"></i> Personal Timetable</a></li>
+    </ul>
   </div>
 
- <!-- Menu Icon -->
- 
- <div id="menuDropdown" class="slide-menu">
-  <div class="close-btn">
-    <i class="fas fa-times"></i> <!-- Close icon -->
+  <!-- Options Dropdown -->
+  <div id="optionsDropdown" class="options-dropdown">
+    <ul>
+      <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+    </ul>
   </div>
-   <ul>
-     <li><a href="announcement.html"><strong><i class="fas fa-bullhorn"></i> Announcement</strong></a></li>
-     <li><a href="calendar.html"><i class="fas fa-calendar-alt"></i> Academic Calendar</a></li>
-     <li><a href="resources.html"><i class="fas fa-book"></i> Resources</a></li>
-     <li><a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a></li>
-   </ul>
- </div>
 
- <!-- Options Icon -->
-
- <div id="optionsDropdown" class="dropdown">
-   <ul>
-     <li><strong><i class="fas fa-info-circle"></i> About</strong></li>
-     <li><i class="fas fa-cog"></i> <a href="settings.html">Settings</a></li>
-     <li><i class="fas fa-question-circle"></i> More Info</li>
-   </ul>
- </div>
-</div>
-</header>
-
-<section class="hero">
-  <div class="hero-text">
+  <!-- Hero Section -->
+  <section class="hero">
     <h1>Welcome to INSIGHT</h1>
-    <p>Your one-stop destination for the latest updates, Academic resources, and news. Stay informed, stay ahead!</p>
-    <button onclick="scrollToNews()">Discover More</button>
-  </div>
-</section>
-  <main id="home">
-    <section class="slider" id="slider">
-      <div class="slider-container" id="sliderContainer">
-        <img src="logo2.png" alt="Slide 1" class="slide active">
-        <img src="insight .jpg" alt="Slide 2" class="slide">
-        <img src="img3.jpg" alt="Slide 3" class="slide">
-      </div>
-      <div class="dots" id="dots"></div>
-    </section>
+    <p>Your one-stop destination for the latest updates, academic resources, and news.</p>
+    <button><a href="about.html"></i> Discover More</a></button>
+  </section>
 
-    <section class="news">
-      <h3>📢 Latest News</h3>
-      <div class="news-grid" id="newsGrid">
-        <p>Loading news...</p>
+  <!-- News Section -->
+  <section class="news-section">
+    <h3>Latest News</h3>
+    <div class="news-grid">
+      <div class="card news-card">
+        <img src="logo2.png" alt="News 1">
+        <h4>New Semester Begins</h4>
+        <p>Classes for the new semester have officially started. Check your schedule online.</p>
       </div>
-      <div style="text-align: center; margin-top: 1rem;">
-        <button onclick="loadNews()" style="background: #2196f3; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔁 Refresh News</button>
+      <div class="card news-card">
+        <img src="insight.jpg" alt="News 2">
+        <h4>Library Extended Hours</h4>
+        <p>The campus library will now be open until 10 PM on weekdays.</p>
       </div>
-    </section>
-  </main>
+      <div class="card news-card">
+        <img src="img3.jpg" alt="News 3">
+        <h4>Workshop: AI in Education</h4>
+        <p>Register now for our special workshop exploring AI's role in modern education.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="load-more" style="text-align:center; margin-top: 1rem;">
-    <button id="loadMoreBtn" style="background-color: #2196f3; color:white; border:none; padding: 10px 20px; border-radius: 30px; cursor:pointer; font-size: 1.1rem;">
-      ...
-    </button>
-  </div>
-
+  <!-- Footer -->
   <footer>
-    <nav class="bottom-nav">
-      <div><span>📚</span><a href="resources.html"><small>Library</small></a></div>
-      <div class="active" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})">
-        <span>🏠</span><small>Home</small>
-      </div>
-      
-      <div><span>👤</span><small>Profile</small></div>
-    </nav>
+    <p>&copy; 2025 Insight Educational Platform. All Rights Reserved.</p>
   </footer>
 
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <div><i class="fas fa-book"></i><br><small>Library</small></div>
+    <div><i class="fas fa-home"></i><br><small>Home</small></div>
+    <div><i class="fas fa-user"></i><br><small>Profile</small></div>
+  </nav>
+
   <script>
-  // Toggle the slide-in menu visibility
-  document.querySelector('.menu-icon').addEventListener('click', function () {
-      document.getElementById('menuDropdown').classList.toggle('active');
+    const menuIcon = document.querySelector('.menu-icon');
+    const optionsIcon = document.querySelector('.options-icon');
+    const menuDrawer = document.getElementById('menuDrawer');
+    const optionsDropdown = document.getElementById('optionsDropdown');
+
+    menuIcon.addEventListener('click', () => {
+      menuDrawer.style.display = menuDrawer.style.display === 'none' || menuDrawer.style.display === '' ? 'block' : 'none';
+      optionsDropdown.style.display = 'none';
     });
 
-    // Toggle the options dropdown visibility
-    document.querySelector('.options-icon').addEventListener('click', function () {
-      document.getElementById('optionsDropdown').classList.toggle('active');
+    optionsIcon.addEventListener('click', () => {
+      optionsDropdown.style.display = optionsDropdown.style.display === 'none' || optionsDropdown.style.display === '' ? 'block' : 'none';
+      menuDrawer.style.display = 'none';
     });
 
-    // Optional: Close dropdowns when clicking outside
-    window.addEventListener('click', function (e) {
-      const menu = document.getElementById('menuDropdown');
-      const options = document.getElementById('optionsDropdown');
-
-      // Close menu if clicked outside
-      if (!e.target.closest('.menu-icon') && !e.target.closest('#menuDropdown')) {
-        menu.classList.remove('active');
+    window.addEventListener('click', function(e) {
+      if (!e.target.closest('.menu-icon') && !e.target.closest('#menuDrawer')) {
+        menuDrawer.style.display = 'none';
       }
-
-      // Close options dropdown if clicked outside
       if (!e.target.closest('.options-icon') && !e.target.closest('#optionsDropdown')) {
-        options.classList.remove('active');
+        optionsDropdown.style.display = 'none';
       }
     });
-// Select menu, close button, and menu icon
-const menu = document.querySelector('.slide-menu');
-const closeBtn = document.querySelector('.close-btn');
-const menuIcon = document.querySelector('.menu-icon');
-
-// Open the menu
-menuIcon.addEventListener('click', () => {
-  menu.classList.add('active');
-});
-
-// Close the menu
-closeBtn.addEventListener('click', () => {
-  menu.classList.remove('active');
-});
-
-    let currentPage = 1;
-
-    async function loadNews() {
-      const apiKey = 'f18792fe99204a98ba2313f451b83315';
-      const url = `https://newsapi.org/v2/everything?q=education&sortBy=publishedAt&pageSize=6&page=${currentPage}&language=en&apiKey=${apiKey}`;
-      const newsGrid = document.getElementById('newsGrid');
-      const loadMoreBtn = document.getElementById('loadMoreBtn');
-
-      if (currentPage === 1) {
-        newsGrid.innerHTML = '<p>Loading news...</p>';
-      }
-
-      loadMoreBtn.textContent = 'Loading...';
-
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-
-        if (!data.articles || data.articles.length === 0) {
-          newsGrid.innerHTML = '<p>No news found at the moment.</p>';
-          loadMoreBtn.style.display = 'none';
-          return;
-        }
-
-        if (currentPage === 1) newsGrid.innerHTML = '';
-
-        data.articles.forEach(article => {
-          const title = article.title || 'No title available';
-          const description = article.description || 'No description available';
-          const source = article.source?.name || 'Unknown Source';
-          const date = new Date(article.publishedAt).toLocaleDateString();
-          const image = article.urlToImage || 'https://via.placeholder.com/300x150?text=No+Image';
-          const link = article.url || '#';
-
-          const box = document.createElement('div');
-          box.className = 'box';
-          box.innerHTML = `
-            <img src="${image}" alt="news image">
-            <strong>${title}</strong>
-            <p>${description}</p>
-            <small style="color: gray;">${source} • ${date}</small><br>
-            <a href="${link}" target="_blank">Read more</a>
-          `;
-          newsGrid.appendChild(box);
-        });
-
-        loadMoreBtn.textContent = '...';
-        currentPage++;
-      } catch (error) {
-        newsGrid.innerHTML = '<p style="color:red;text-align: center;">Failed to load news. Please try again later.</p>';
-        loadMoreBtn.style.display = 'none';
-        console.error('Error fetching news:', error);
-      }
-    }
-   
-
-    document.getElementById('loadMoreBtn').addEventListener('click', loadNews);
-    loadNews();
-
-    // Slider Logic
-    const slides = document.querySelectorAll('.slide');
-    const dotsContainer = document.getElementById('dots');
-    let currentSlide = 0;
-
-    slides.forEach((_, index) => {
-      const dot = document.createElement('span');
-      dot.addEventListener('click', () => showSlide(index));
-      dotsContainer.appendChild(dot);
-    });
-
-    const dots = dotsContainer.querySelectorAll('span');
-    showSlide(0);
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-        dots[i].classList.toggle('active', i === index);
-      });
-      currentSlide = index;
-    }
-
-    function nextSlide() {
-      const next = (currentSlide + 1) % slides.length;
-      showSlide(next);
-    }
-    // Show scroll-to-top button when user scrolls down
-window.onscroll = function () {
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    scrollBtn.style.display = 'block';
-  } else {
-    scrollBtn.style.display = 'none';
-  }
-};
-
-// Scroll-to-top functionality
-const scrollTopBtn = document.createElement("button");
-scrollTopBtn.id = "scrollTopBtn";
-scrollTopBtn.innerHTML = "⬆";
-document.body.appendChild(scrollTopBtn);
-
-window.onscroll = function () {
-  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    scrollTopBtn.style.display = "block";
-  } else {
-    scrollTopBtn.style.display = "none";
-  }
-};
-
-scrollTopBtn.onclick = function () {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-};
-
-
   </script>
- 
-<!-- Scroll to Top Button -->
-<button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">⬆</button>
 </body>
-
-
 </html>
