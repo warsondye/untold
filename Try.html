@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insight Educational Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #075f1d, #075f1d);
+      color: #2c3e50;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .logo span {
+      font-weight: bold;
+      font-size: 1.6rem;
+      color: #007bff;
+    }
+
+    .menu-icon, .options-icon {
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .menu-drawer, .options-dropdown {
+      display: none;
+      position: absolute;
+      top: 70px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    .menu-drawer {
+      left: 10px;
+      width: 200px;
+    }
+
+    .options-dropdown {
+      right: 10px;
+      width: 160px;
+    }
+
+    .menu-drawer ul, .options-dropdown ul {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+    }
+
+    .menu-drawer li, .options-dropdown li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .menu-drawer li:last-child, .options-dropdown li:last-child {
+      border-bottom: none;
+    }
+
+    .menu-drawer li a, .options-dropdown li a {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: url('hero-bg.jpg') no-repeat center center/cover;
+      border-radius: 16px;
+      margin: 2rem auto;
+      max-width: 900px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+    }
+
+    .hero button {
+      margin-top: 1rem;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .hero button:hover {
+      background: #ff4081;
+      transform: scale(1.05);
+    }
+
+    /* News Section */
+    .news-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .news-section h3 {
+      text-align: center;
+      color: #007bff;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Card Styling */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      border: 1px solid #f1f1f1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .news-card h4 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .news-card p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Footer and Navigation */
+    footer {
+      background: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid #ecf0f1;
+      font-size: 0.9rem;
+      color: #555; 
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      padding: 0.7rem 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ecf0f1;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .bottom-nav div {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #999;
+    }
+
+    .bottom-nav div:hover {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div class="menu-icon"><i class="fas fa-bars"></i></div>
+      <div class="logo">
+        <img src="insight.jpg" alt="Logo" />
+        <span>INSIGHT</span>
+      </div>
+      <div class="options-icon"><i class="fas fa-ellipsis-v"></i></div>
+    </div>
+  </header>
+
+  <!-- Menu Drawer -->
+  <div id="menuDrawer" class="menu-drawer">
+    <ul>
+      <li><a href="resources.html"><i class="fas fa-book"></i> Academic Resources</a></li>
+      <li><a href="calendar.html"><i class="fas fa-book-reader"></i> Academic Calendar</a></li>
+      <li><a href="timetable.html"><i class="fas fa-calendar-alt"></i> Personal Timetable</a></li>
+    </ul>
+  </div>
+
+  <!-- Options Dropdown -->
+  <div id="optionsDropdown" class="options-dropdown">
+    <ul>
+      <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to INSIGHT</h1>
+    <p>Your one-stop destination for the latest updates, academic resources, and news.</p>
+    <button><a href="about.html"></i> Discover More</a></button>
+  </section>
+
+  <!-- News Section -->
+  <section class="news-section">
+    <h3>Latest News</h3>
+    <div class="news-grid">
+      <div class="card news-card">
+        <img src="logo2.png" alt="News 1">
+        <h4>New Semester Begins</h4>
+        <p>Classes for the new semester have officially started. Check your schedule online.</p>
+      </div>
+      <div class="card news-card">
+        <img src="insight.jpg" alt="News 2">
+        <h4>Library Extended Hours</h4>
+        <p>The campus library will now be open until 10 PM on weekdays.</p>
+      </div>
+      <div class="card news-card">
+        <img src="img3.jpg" alt="News 3">
+        <h4>Workshop: AI in Education</h4>
+        <p>Register now for our special workshop exploring AI's role in modern education.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Insight Educational Platform. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <div><i class="fas fa-book"></i><br><small>Library</small></div>
+    <div><i class="fas fa-home"></i><br><small>Home</small></div>
+    <div><i class="fas fa-user"></i><br><small>Profile</small></div>
+  </nav>
+
+  <script>
+    const menuIcon = document.querySelector('.menu-icon');
+    const optionsIcon = document.querySelector('.options-icon');
+    const menuDrawer = document.getElementById('menuDrawer');
+    const optionsDropdown = document.getElementById('optionsDropdown');
+
+    menuIcon.addEventListener('click', () => {
+      menuDrawer.style.display = menuDrawer.style.display === 'none' || menuDrawer.style.display === '' ? 'block' : 'none';
+      optionsDropdown.style.display = 'none';
+    });
+
+    optionsIcon.addEventListener('click', () => {
+      optionsDropdown.style.display = optionsDropdown.style.display === 'none' || optionsDropdown.style.display === '' ? 'block' : 'none';
+      menuDrawer.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(e) {
+      if (!e.target.closest('.menu-icon') && !e.target.closest('#menuDrawer')) {
+        menuDrawer.style.display = 'none';
+      }
+      if (!e.target.closest('.options-icon') && !e.target.closest('#optionsDropdown')) {
+        optionsDropdown.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
