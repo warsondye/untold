@@ -7,222 +7,379 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #075f1d, #075f1d);
-      color: #2c3e50;
-    }
+  body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #e6f2e9, #b4dfc1, #79c2a0); /* soft gradient */
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+}
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+/* Base dark mode styles */
+body.dark-mode {
+  background: linear-gradient(135deg, #0b2e1f, #133d2c, #1a4b35);
+  color: #f0f0f0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+/* Dark mode adjustments for components */
+.dark-mode .top-bar,
+.dark-mode .user-banner,
+.dark-mode .quick-actions,
+.dark-mode .hero,
+.dark-mode .news-section,
+.dark-mode .card,
+.dark-mode .activity-feed,
+.dark-mode footer,
+.dark-mode .bottom-nav {
+  background-color: rgba(44, 62, 54, 0.85); /* subtle green-black shade */
+  color: #ffffff;
+}
 
-    .logo img {
-      width: 35px;
-      height: 35px;
-    }
+/* Specific text elements in dark mode */
+.dark-mode h1,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode p,
+.dark-mode small {
+  color: #e0ffe0; /* soft green-tinted white */
+}
 
-    .logo span {
-      font-weight: bold;
-      font-size: 1.6rem;
-      color: #007bff;
-    }
+/* Optional: hover state for buttons in dark mode */
+.dark-mode button:hover {
+  background: #00b86b;
+  color: #fff;
+}
 
-    .menu-icon, .options-icon {
-      font-size: 1.7rem;
-      cursor: pointer;
-      color: #333;
-    }
+/* Ensure dark toggle transitions smoothly */
+body {
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-    .menu-drawer, .options-dropdown {
-      display: none;
-      position: absolute;
-      top: 70px;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      z-index: 1000;
-    }
 
-    .menu-drawer {
-      left: 10px;
-      width: 200px;
-    }
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
-    .options-dropdown {
-      right: 10px;
-      width: 160px;
-    }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .menu-drawer ul, .options-dropdown ul {
-      list-style: none;
-      padding: 10px;
-      margin: 0;
-    }
+.logo img {
+  width: 35px;
+  height: 35px;
+}
 
-    .menu-drawer li, .options-dropdown li {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-    }
+.logo span {
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #007bff;
+}
 
-    .menu-drawer li:last-child, .options-dropdown li:last-child {
-      border-bottom: none;
-    }
+.menu-icon, .options-icon {
+  font-size: 1.7rem;
+  cursor: pointer;
+  color: #333;
+}
 
-    .menu-drawer li a, .options-dropdown li a {
-      text-decoration: none;
-      color: #333;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.menu-drawer, .options-dropdown {
+  display: none;
+  position: absolute;
+  top: 70px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1000;
+}
 
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 5rem 2rem;
-      background: url('hero-bg.jpg') no-repeat center center/cover;
-      border-radius: 16px;
-      margin: 2rem auto;
-      max-width: 900px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      color: white;
-    }
+.menu-drawer {
+  left: 10px;
+  width: 200px;
+}
 
-    .hero h1 {
-      font-size: 3rem;
-      color: #fff;
-      font-weight: 600;
-    }
+.options-dropdown {
+  right: 10px;
+  width: 160px;
+}
 
-    .hero p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 1.1rem;
-    }
+.menu-drawer ul, .options-dropdown ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
 
-    .hero button {
-      margin-top: 1rem;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 30px;
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: background 0.3s, transform 0.3s;
-    }
+.menu-drawer li, .options-dropdown li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
 
-    .hero button:hover {
-      background: #ff4081;
-      transform: scale(1.05);
-    }
+.menu-drawer li:last-child, .options-dropdown li:last-child {
+  border-bottom: none;
+}
 
-    /* News Section */
-    .news-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-    }
+.menu-drawer li a, .options-dropdown li a {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .news-section h3 {
-      text-align: center;
-      color: #007bff;
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-    }
+.user-banner {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f9f9f9;
+}
 
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
+.user-banner img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 
-    /* Card Styling */
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      border: 1px solid #f1f1f1;
-    }
+.quick-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-    }
+.quick-actions div {
+  text-align: center;
+}
 
-    .news-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
+.quick-actions i {
+  font-size: 1.5rem;
+  color: #007bff;
+}
 
-    .news-card h4 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: url('hero-bg.jpg') no-repeat center center/cover;
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: white;
+}
 
-    .news-card p {
-      font-size: 1rem;
-      color: #666;
-      line-height: 1.5;
-    }
+.hero h1 {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 600;
+}
 
-    /* Footer and Navigation */
-    footer {
-      background: #fff;
-      padding: 2rem 1rem;
-      text-align: center;
-      border-top: 1px solid #ecf0f1;
-      font-size: 0.9rem;
-      color: #555; 
-    }
+.hero p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
 
-    .bottom-nav {
-      display: flex;
-      justify-content: space-around;
-      background: #fff;
-      padding: 0.7rem 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      border-top: 1px solid #ecf0f1;
-      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
-    }
+.hero button {
+  margin-top: 1rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.3s, transform 0.3s;
+}
 
-    .bottom-nav div {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #999;
-    }
+.hero button:hover {
+  background: #ff4081;
+  transform: scale(1.05);
+}
 
-    .bottom-nav div:hover {
-      color: #007bff;
-    }
+/* News Section */
+.news-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.news-section h3 {
+  text-align: center;
+  color: #007bff;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.horizontal-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  width: 280px;
+  margin-right: 1rem;
+  vertical-align: top;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.news-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.news-card h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.news-card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+
+/* Footer and Navigation */
+footer {
+  background: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid #ecf0f1;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  padding: 0.7rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ecf0f1;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav div {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+  cursor: pointer;
+}
+
+.bottom-nav div:hover {
+  color: #007bff;
+}
+
+/* Dark mode toggle button */
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #333;
+}
+/* Profile Modal */
+.profile-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-modal .modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.profile-modal h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.profile-modal input[type="text"],
+.profile-modal input[type="file"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.profile-modal .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-modal button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 48%;
+}
+
+.profile-modal button:hover {
+  background-color: #0056b3;
+}
+
+.profile-modal button#cancelProfile {
+  background-color: #f44336;
+}
+
+.profile-modal button#cancelProfile:hover {
+  background-color: #e53935;
+}
+
+
+     /* For simplicity, the CSS is skipped here since it hasn’t changed. Keep it as-is. */
   </style>
 </head>
 <body>
@@ -236,6 +393,52 @@
       <div class="options-icon"><i class="fas fa-ellipsis-v"></i></div>
     </div>
   </header>
+
+  
+
+  <!-- Profile Modal -->
+<div id="profileModal" class="profile-modal">
+  <div class="modal-content">
+    <h3>Update Profile</h3>
+    <form id="profileForm">
+      <label for="profileName">Full Name</label>
+      <input type="text" id="profileName" placeholder="Enter your name" required />
+      
+      <label for="profileAvatar">Avatar (optional)</label>
+      <input type="file" id="profileAvatar" accept="image/*" />
+
+      <div class="buttons">
+        <button type="button" id="saveProfile">Save</button>
+        <button type="button" id="cancelProfile">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- Display Profile Info -->
+<div class="user-banner">
+  <img id="displayAvatar" src="avatar.jpg" alt="User Avatar" />
+  <div>
+    <h4 id="displayName">Hello, User!</h4>
+    <small>Unlock your learning!</small>
+  </div>
+</div>
+
+<!-- Profile Icon to Open Modal -->
+<button id="profileIcon">Profile</button>
+
+
+
+  <!-- Quick actions -->
+  <div class="quick-actions">
+    <div><i class="fas fa-chart-line"></i><br><small>Quick actions</small></div>
+    <div><a href="timetable.html"> <i class="fas fa-calendar-alt"></i><br><small>Timetable</small></a></div>
+    <div> <a href="#news"> <i class="fas fa-bullhorn"></i><br><small>Announcements</small></a></div>
+    
+  </div>
 
   <!-- Menu Drawer -->
   <div id="menuDrawer" class="menu-drawer">
@@ -258,30 +461,31 @@
   <section class="hero">
     <h1>Welcome to INSIGHT</h1>
     <p>Your one-stop destination for the latest updates, academic resources, and news.</p>
-    <button><a href="about.html"></i> Discover More</a></button>
+    <button><a href="about.html" style="color:white; text-decoration:none;">Discover More</a></button>
   </section>
 
   <!-- News Section -->
-  <section class="news-section">
+  <section id="news"class="news-section">
     <h3>Latest News</h3>
-    <div class="news-grid">
+    <div class="horizontal-scroll">
       <div class="card news-card">
-        <img src="logo2.png" alt="News 1">
+        <img src="insight.jpg" alt="News 1">
+        <h4>Insight</h4>
+        <p>Welcome to insight.</p>
+      </div>
+      <div class="card news-card">
+        <img src="logo2.png" alt="News 2">
         <h4>New Semester Begins</h4>
-        <p>Classes for the new semester have officially started. Check your schedule online.</p>
+        <p>Classes for the new semester will <br> officially start 29th April<br>for third years .</p>
       </div>
+      
       <div class="card news-card">
-        <img src="insight.jpg" alt="News 2">
-        <h4>Library Extended Hours</h4>
-        <p>The campus library will now be open until 10 PM on weekdays.</p>
-      </div>
-      <div class="card news-card">
-        <img src="img3.jpg" alt="News 3">
-        <h4>Workshop: AI in Education</h4>
-        <p>Register now for our special workshop exploring AI's role in modern education.</p>
+        <img src="logo2.png" alt="News 3">
+        <h4>No plastic Waste policy</h4>
+        <p>All students must come along <br> with water bottles.</p>
       </div>
     </div>
-  </section>
+    </section>
 
   <!-- Footer -->
   <footer>
@@ -290,7 +494,7 @@
 
   <!-- Bottom Navigation -->
   <nav class="bottom-nav">
-    <div><i class="fas fa-book"></i><br><small>Library</small></div>
+    <div><a href="resources.html"><i class="fas fa-book"></i><br><small>Library</small></a></div>
     <div><i class="fas fa-home"></i><br><small>Home</small></div>
     <div><i class="fas fa-user"></i><br><small>Profile</small></div>
   </nav>
@@ -319,6 +523,80 @@
         optionsDropdown.style.display = 'none';
       }
     });
+
+    
+  // Show modal from bottom nav
+  document.querySelector('.bottom-nav div:nth-child(3)').addEventListener('click', () => {
+    openProfileModal();
+  });
+
+  function openProfileModal() {
+    document.getElementById('profileModal').style.display = 'flex';
+  }
+
+  function closeProfileModal() {
+    document.getElementById('profileModal').style.display = 'none';
+  }
+
+ // Open Profile Modal
+const profileIcon = document.querySelector("#profileIcon"); // Assuming an ID for profile icon
+const profileModal = document.querySelector("#profileModal");
+const cancelProfile = document.querySelector("#cancelProfile");
+const saveProfile = document.querySelector("#saveProfile");
+const profileName = document.querySelector("#profileName");
+const profileAvatar = document.querySelector("#profileAvatar");
+
+// Open profile modal when icon is clicked
+profileIcon.addEventListener("click", function () {
+  profileModal.style.display = "flex";
+  const savedName = localStorage.getItem("name");
+  if (savedName) {
+    profileName.value = savedName;
+  }
+});
+
+// Close modal when cancel button is clicked
+cancelProfile.addEventListener("click", function () {
+  profileModal.style.display = "none";
+});
+
+// Save profile data
+saveProfile.addEventListener("click", function () {
+  const name = profileName.value;
+  const avatar = profileAvatar.files[0];
+
+  if (name.trim() !== "") {
+    localStorage.setItem("name", name); // Save name to localStorage
+  }
+
+  if (avatar) {
+    const reader = new FileReader();
+    reader.onloadend = function () {
+      localStorage.setItem("avatar", reader.result); // Save avatar as base64
+    };
+    reader.readAsDataURL(avatar); // Read the file as a base64 string
+  }
+
+  profileModal.style.display = "none"; // Close the modal
+});
+
+// Load saved profile info (if any)
+window.onload = function () {
+  const savedName = localStorage.getItem("name");
+  const savedAvatar = localStorage.getItem("avatar");
+
+  if (savedName) {
+    document.querySelector("#displayName").textContent = savedName; // Display saved name
+  }
+
+  if (savedAvatar) {
+    document.querySelector("#displayAvatar").src = savedAvatar; // Display saved avatar
+  }
+};
+
+
+
+
   </script>
 </body>
 </html>
