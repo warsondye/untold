@@ -378,17 +378,104 @@ footer {
   background-color: #e53935;
 }
 
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeOut 1s ease-out forwards;
+  }
+
+  .logo-wrap {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo-left, .logo-right {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0.8;
+    animation: slide-in 1s forwards;
+  }
+
+  .logo-left {
+    left: -20px;
+    animation-delay: 0s;
+  }
+
+  .logo-right {
+    left: 20px;
+    animation-delay: 0.2s;
+  }
+
+  .logo-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+    animation: reveal-center 1.2s forwards 1s;
+  }
+
+  .preloader-text {
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    color: #007bff;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.5s;
+  }
+
+  @keyframes slide-in {
+    0% { transform: translateX(0); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes reveal-center {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { display: none; opacity: 0; visibility: hidden; }
+  }
+
+
 
      /* For simplicity, the CSS is skipped here since it hasn’t changed. Keep it as-is. */
   </style>
-  
 </head>
 <body>
+  <div class="preloader" id="preloader">
+  <div class="logo-wrap">
+    <img src="logo2.png" class="logo-left" alt="Logo Left">
+    <img src="logo2.png" class="logo-right" alt="Logo Right">
+    <img src="insight.jpg" class="logo-center" alt="Combined Logo">
+  </div>
+  <div class="preloader-text">Loading Insight Platform...</div>
+</div>
+
+
   <header>
     <div class="top-bar">
       <div class="menu-icon"><i class="fas fa-bars"></i></div>
       <div class="logo">
-        <img src="insight .jpg" alt="Logo" />
+        <img src="insight.jpg" alt="Logo" />
         <span>INSIGHT</span>
       </div>
       <div class="options-icon"><i class="fas fa-ellipsis-v"></i></div>
@@ -470,7 +557,7 @@ footer {
     <h3>Latest News</h3>
     <div class="horizontal-scroll">
       <div class="card news-card">
-        <img src="insight .jpg" alt="News 1">
+        <img src="insight.jpg" alt="News 1">
         <h4>Insight</h4>
         <p>Welcome to insight.</p>
       </div>
@@ -499,8 +586,15 @@ footer {
     <div><i class="fas fa-home"></i><br><small>Home</small></div>
     <div><i class="fas fa-user"></i><br><small>Profile</small></div>
   </nav>
-
+<script src="setttings.js"><script>
   <script>
+  window.addEventListener("load", function () {
+  const preloader = document.getElementById("preloader");
+  setTimeout(() => {
+    preloader.style.display = "none";
+  }, 2500); // gives enough time for the animation to complete
+});
+
     const menuIcon = document.querySelector('.menu-icon');
     const optionsIcon = document.querySelector('.options-icon');
     const menuDrawer = document.getElementById('menuDrawer');
