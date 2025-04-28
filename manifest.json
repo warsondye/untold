@@ -2,7 +2,7 @@
 {
   "name": "Insight ",
   "short_name": "Insight",
-  "start_url": "/Try.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
