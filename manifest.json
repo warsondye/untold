@@ -2,7 +2,7 @@
 {
   "name": "Insight ",
   "short_name": "Insight",
-  "start_url": "https://warsondye.github.io/untold/Try.html",
+  "start_url": "/Try.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
