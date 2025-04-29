@@ -1,11 +1,12 @@
 
 {
-  "name": "Insight ",
+  "name": "Insight Educational Platform",
   "short_name": "Insight",
-  "start_url": "./",
+  "start_url": "/untold/Try.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "#28a745",
+  "description": "Your everyday academic and study resource hub",
   "icons": [
     {
       "src": "insight .jpg",
