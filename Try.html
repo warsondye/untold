@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Insight Educational Platform</title>
-  <base href="/untold/">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="manifest" href="manifest.json">
@@ -15,7 +14,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <style>
-  
+  #unlockPhrase {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
   body {
   margin: 0;
   padding: 0;
@@ -411,17 +414,79 @@ footer {
 #installBtn i {
   margin-right: 10px;
 }
+#ai-assistant {
+  position: relative;
+  top: 20;
+  left: 10;
+  margin-top: 10px; /* Adjust as needed to align with user banner */
+  margin-left: 10px;
+  z-index: 1000;
+}
+
+#open-ai-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#open-ai-btn:hover {
+  background-color: #45a049;
+}
+
+#ai-chat {
+  margin-top: 10px;
+  width: 250px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#chat-messages {
+  height: 200px;
+  overflow-y: auto;
+  background: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#user-input {
+  width: calc(100% - 60px);
+  padding: 5px;
+  margin-right: 5px;
+}
+
+#send-btn {
+  padding: 6px 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#send-btn:hover {
+  background-color: #0056b3;
+}
 
 
      /* For simplicity, the CSS is skipped here since it hasn’t changed. Keep it as-is. */
   </style>
 </head>
+
+
 <body>
   <header>
     <div class="top-bar">
       <div class="menu-icon"><i class="fas fa-bars"></i></div>
       <div class="logo">
-        <img src="insight .jpg" alt="Logo" />
+        <img src="insight.jpg" alt="Logo" />
         <span>INSIGHT</span>
       </div>
       <div class="options-icon"><i class="fas fa-ellipsis-v"></i></div>
@@ -451,18 +516,54 @@ footer {
 
 
 
-
 <!-- Display Profile Info -->
 <div class="user-banner">
   <img id="displayAvatar" src="avatar.jpg" alt="User Avatar" />
   <div>
     <h4 id="displayName">Hello, User!</h4>
-    <small>Unlock your learning!</small>
+    <p id="lastScore">Loading score...</p> <!-- Last Score Display -->
+    <small id="unlockPhrase">Unlock your learning!</small>
   </div>
 </div>
 
+
+
+  <script>
+  
+  const phrases = [
+    "Unlock your learning!",
+  "Everything you need, all in one place — welcome to Insight",
+  "Solve questions everyday to get more points!",
+    "Stay curious, keep growing!",
+    "One step closer to your goals!",
+    "Learn. Apply. Repeat.",
+    "Your future starts now!",
+    "Sharpen your skills daily!",
+    "Knowledge is power!",
+    "Keep pushing forward!",
+  "Refresh after selecting dark mode and updating profile"
+  ];
+
+  let currentPhrase = 0;
+  const phraseElement = document.getElementById("unlockPhrase");
+
+  setInterval(() => {
+    phraseElement.style.opacity = 0;
+    setTimeout(() => {
+      currentPhrase = (currentPhrase + 1) % phrases.length;
+      phraseElement.textContent = phrases[currentPhrase];
+      phraseElement.style.opacity = 1;
+    }, 500); // Matches the CSS transition duration
+  }, 3000);
+
+
+  const score = localStorage.getItem('lastScore');
+  document.getElementById('lastScore').textContent = score ? `point: ${score} pts` : '0';
+</script>
+
+  
+
 <!-- Profile Icon to Open Modal -->
-<button id="profileIcon">Profile</button>
 
 <!-- Add the Install button in the body -->
   <button id="installBtn" style="display: none;">
@@ -493,7 +594,15 @@ footer {
       <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
     </ul>
   </div>
-
+<div id="ai-assistant">
+    <button id="open-ai-btn">Ask question or research?</button>
+    <div id="ai-chat" style="display: none;">
+      <div id="chat-messages"></div>
+      <input type="text" id="user-input" placeholder="Ask me anything..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+  
   <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to INSIGHT</h1>
@@ -529,11 +638,12 @@ footer {
     <p>&copy; 2025 Insight Educational Platform. All Rights Reserved.</p>
   </footer>
 
+<button id="profileIcon">Profile</button>
   <!-- Bottom Navigation -->
   <nav class="bottom-nav">
-    <div><a href="resources.html" style="color:black;"><i class="fas fa-book" style="color:black;"></i><br><small>Library</small></a></div>
-    <div><i class="fas fa-home" style="color:red;"></i><br><small>Home</small></div>
-    <div><i class="fas fa-user"></i><br><small>Profile</small></div>
+    <div><a href="resources.html" style="color:black;text-decoration: none;"><i class="fas fa-book" style="color:black;"></i><br><small>Library</small></a></div>
+    <div><i class="fas fa-home" style="color:blue;"></i><br><small>Home</small></div>
+    <div><i class="fas fa-user" style="color:black;text-decoration: none;"></i><br><small>Profile</small></div>
   </nav>
 
   <script>
@@ -669,8 +779,73 @@ window.onload = function () {
     document.querySelector("#displayAvatar").src = savedAvatar; // Display saved avatar
   }
 };
+// DOM elements
+const openAIBtn = document.getElementById('open-ai-btn');
+const aiChat = document.getElementById('ai-chat');
+const sendBtn = document.getElementById('send-btn');
+const userInput = document.getElementById('user-input');
+const chatMessages = document.getElementById('chat-messages');
 
+// Toggle chat visibility
+openAIBtn.addEventListener('click', () => {
+  aiChat.style.display = aiChat.style.display === 'none' ? 'block' : 'none';
+});
 
+// Send message on button click
+sendBtn.addEventListener('click', () => {
+  const userText = userInput.value.trim();
+  if (userText !== '') {
+    getAIResponse(userText);
+    userInput.value = '';
+  }
+});
+
+// Add message to chat
+function addMessage(sender, text, type = '') {
+  const message = document.createElement('div');
+  message.classList.add('message');
+  if (type) message.classList.add(type);
+  message.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  chatMessages.appendChild(message);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Get AI response from OpenAI
+async function getAIResponse(userText) {
+  addMessage('You', userText, 'user');
+
+  const thinkingMessage = document.createElement('div');
+  thinkingMessage.classList.add('message', 'ai');
+  thinkingMessage.innerHTML = `<em>Insight AI is typing...</em>`;
+  chatMessages.appendChild(thinkingMessage);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer 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',  // Replace with your real key
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: userText }]
+      })
+    });
+
+    const data = await response.json();
+    const aiText = data.choices[0].message.content;
+
+    // Remove "typing..." and show response
+    chatMessages.removeChild(thinkingMessage);
+    addMessage('Insight AI', aiText, 'ai');
+
+  } catch (error) {
+    console.error(error);
+    chatMessages.removeChild(thinkingMessage);
+    addMessage('Insight AI', 'Sorry, I couldn’t reach the server. Try again later.', 'ai');
+  }
+}
 
 
   </script>
