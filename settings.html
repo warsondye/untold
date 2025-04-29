@@ -191,9 +191,14 @@
   </div>
 
   <script>
-    function goBack() {
-      window.history.back();
-    }
+    
+  function goBack() {
+    // Set a flag to tell the previous page to refresh
+    sessionStorage.setItem('refreshOnBack', 'true');
+    window.history.back(); // Go back to the previous page
+  }
+
+
 
     // Initialize settings from localStorage
     const darkModeToggle = document.getElementById("darkModeToggle");
