@@ -1,6 +1,5 @@
 const CACHE_NAME = 'insight-smart-cache-v1';
 const urlsToCache = [
-  './',              // Main page
   'Try.html',
   'manifest.json',
   'settings.html',
