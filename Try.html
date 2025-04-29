@@ -556,6 +556,9 @@ footer {
     }, 500); // Matches the CSS transition duration
   }, 3000);
 
+document.getElementById('saveProfile').addEventListener('click', function() {
+  location.reload();
+});
 
   const userPoints = localStorage.getItem('userPoints') || 0;
 
