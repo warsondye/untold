@@ -2,7 +2,7 @@
 {
   "name": "Insight Educational Platform",
   "short_name": "Insight",
-  "start_url": "/untold/Try.html",
+  "start_url": "/Try.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#28a745",
