@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -521,7 +521,7 @@ footer {
   <img id="displayAvatar" src="avatar.jpg" alt="User Avatar" />
   <div>
     <h4 id="displayName">Hello, User!</h4>
-    <p id="lastScore">Loading score...</p> <!-- Last Score Display -->
+    <p id="points-display">Loading score...</p> <!-- Last Score Display -->
     <small id="unlockPhrase">Unlock your learning!</small>
   </div>
 </div>
@@ -557,11 +557,14 @@ footer {
   }, 3000);
 
 
-  const score = localStorage.getItem('lastScore');
-  document.getElementById('lastScore').textContent = score ? `point: ${score} pts` : '0';
+  const userPoints = localStorage.getItem('userPoints') || 0;
+
+    // Display it in the element
+    document.getElementById('points-display').textContent = `Learning Score:${userPoints} `;
+  
 </script>
 
-  
+  
 
 <!-- Profile Icon to Open Modal -->
 
@@ -595,20 +598,20 @@ footer {
     </ul>
   </div>
 <div id="ai-assistant">
-    <button id="open-ai-btn">Ask question or research?</button>
-    <div id="ai-chat" style="display: none;">
-      <div id="chat-messages"></div>
-      <input type="text" id="user-input" placeholder="Ask me anything..." />
-      <button id="send-btn">Send</button>
-    </div>
-  </div>
-  
+    <button id="open-ai-btn">Ask question or research?</button>
+    <div id="ai-chat" style="display: none;">
+      <div id="chat-messages"></div>
+      <input type="text" id="user-input" placeholder="Ask me anything..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
   <!-- Hero Section -->
-  <section class="hero">
-    <h1>Welcome to INSIGHT</h1>
-    <p>Your one-stop destination for the latest updates, academic resources, and news.</p>
-    <button><a href="about.html" style="color:white; text-decoration:none;">Discover More</a></button>
-  </section>
+<section class="hero">
+  <h1>Welcome to INSIGHT</h1>
+  <p>Unlock a world of endless learning, exclusive resources, and up-to-the-minute news. Stay ahead, stay informed, and elevate your mind.</p>
+  <button><a href="resources.html" style="color:white; text-decoration:none;">Start Your Journey</a></button>
+</section>
+
 
   <!-- News Section -->
   <section id="news"class="news-section">
@@ -809,7 +812,6 @@ function addMessage(sender, text, type = '') {
   chatMessages.appendChild(message);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
-
 // Get AI response from OpenAI
 async function getAIResponse(userText) {
   addMessage('You', userText, 'user');
@@ -820,7 +822,7 @@ async function getAIResponse(userText) {
   chatMessages.appendChild(thinkingMessage);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
-try {
+  try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -846,8 +848,9 @@ try {
     addMessage('Insight AI', 'Sorry, I couldn’t reach the server. Try again later.', 'ai');
   }
 }
-
-
   </script>
 </body>
 </html>
+
+
+   
