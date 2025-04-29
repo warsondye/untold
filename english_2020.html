@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WASSCE English Objectives</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     /* Styles remain the same... */
@@ -79,7 +81,7 @@
     header {
       text-align: center;
       padding: 20px;
-      background: green;
+      background:#28a745 ;
       color: white;
       font-size: 22px;
       font-weight: bold;
@@ -165,7 +167,7 @@
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: green;
+      background: #28a745;
       display: flex;
       justify-content: space-around;
       padding: 10px 0;
@@ -220,12 +222,13 @@
       <img id="user-avatar" src="" alt="User Avatar">
       <span id="user-name">Loading...</span>
     </div>
-    <button onclick="startQuiz()">Start Quiz</button>
-    <button onclick="viewLeaderboard()">View Leaderboard</button>
-    <button onclick="resetProgress()">Reset Progress</button>
+   <button onclick="startQuiz()"><i class="fas fa-play-circle"></i>Start Quiz</button>
+    <button onclick="viewLeaderboard()"><i class="fas fa-trophy"></i>View Leaderboard</button>
+    <button onclick="resetProgress()"><i class="fas fa-sync-alt"></i>Reset Progress</button>
   </main>
 
-  <main id="quiz-container">
+ 
+   <main id="quiz-container">
     <div id="progress-bar"><div id="progress"></div></div>
     <div id="timer">Time: 15s</div>
     <div id="question"></div>
