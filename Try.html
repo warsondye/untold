@@ -533,7 +533,7 @@ footer {
     <small id="unlockPhrase">Unlock your learning!</small>
   </div>
 </div>
-
+<div id="connection-status" style="display: none;"></div>
 
 
   <script>
@@ -572,7 +572,41 @@ document.getElementById('saveProfile').addEventListener('click', function() {
 
     // Display it in the element
     document.getElementById('points-display').textContent = `Learning Score:${userPoints} `;
-  
+
+
+
+// Insight Educational Platform Script
+console.log('Insight platform script loaded.');
+
+// Show online/offline status
+const statusDiv = document.getElementById('connection-status');
+
+function updateOnlineStatus() {
+  statusDiv.textContent = 'You are back online!';
+  statusDiv.style.backgroundColor = '#28a745'; // Green
+  statusDiv.style.color = 'white';
+  statusDiv.style.padding = '10px';
+  statusDiv.style.textAlign = 'center';
+  statusDiv.style.display = 'block';
+
+  setTimeout(() => {
+    statusDiv.style.display = 'none';
+  }, 3000); // Hide after 3 seconds
+}
+
+function updateOfflineStatus() {
+  statusDiv.textContent = 'You are offline!';
+  statusDiv.style.backgroundColor = '#dc3545'; // Red
+  statusDiv.style.color = 'white';
+  statusDiv.style.padding = '10px';
+  statusDiv.style.textAlign = 'center';
+  statusDiv.style.display = 'block';
+}
+
+// Listen for connection changes
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOfflineStatus);
+    
 </script>
 
   
