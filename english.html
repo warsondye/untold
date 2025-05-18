@@ -1,116 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Year for Past Questions</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #eaf4e1; /* Light green background */
-        }
-        .container {
-            max-width: 600px;
-            margin: 100px auto;
-            background-color: #ffffff; /* White background for container */
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #2c3e50;
-            font-size: 2em;
-        }
-        label {
-            font-size: 1.2em;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            display: block;
-        }
-        select {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            background-color: #f9f9f9;
-        }
-        button {
-            padding: 12px 20px;
-            background-color: #06421f; /* Green button */
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            margin-top: 15px;
-        }
-        button:hover {
-            background-color: #2ecc71; /* Lighter green when hovered */
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #2c3e50;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Year for Past Questions</title>
+  <style>
+    :root {
+      --bg-light: #eaf4e1;
+      --container-light: #ffffff;
+      --text-light: #2c3e50;
+
+      --bg-dark: #1a1a1a;
+      --container-dark: #2c2c2c;
+      --text-dark: #f1f1f1;
+
+      --accent: #06421f;
+      --hover: #2ecc71;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: background 0.4s ease;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background-color: var(--container-light);
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fadeIn 0.7s ease-in-out;
+      transition: background-color 0.4s ease;
+    }
+
+    body.dark-mode .container {
+      background-color: var(--container-dark);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      transition: color 0.4s ease;
+    }
+
+    body.dark-mode h1 {
+      color: var(--text-dark);
+    }
+
+    label {
+      font-size: 1.1em;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      display: block;
+      transition: color 0.4s ease;
+    }
+
+    body.dark-mode label {
+      color: var(--text-dark);
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #f7f7f7;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    select:hover {
+      transform: scale(1.02);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: var(--accent);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: var(--hover);
+      transform: scale(1.03);
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 1.1em;
+      color: var(--text-light);
+      transition: color 0.4s ease;
+    }
+
+    body.dark-mode .result {
+      color: var(--text-dark);
+    }
+
+    .result a {
+      color: #0b8457;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .result a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9em;
+      color: var(--text-light);
+      transition: color 0.4s ease;
+    }
+
+    body.dark-mode .toggle-switch {
+      color: var(--text-dark);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      border-radius: 34px;
+      transition: 0.4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--hover);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+  </style>
 </head>
+
 <body>
+  
 
-    <div class="container">
-        <h1>Select the Year of Past Questions</h1>
+  <div class="container">
+    <h1>Select the Year of Past Questions</h1>
+    <label for="yearSelect">Choose Year:</label>
+    <select id="yearSelect">
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
+      <option value="2019">2019</option>
+    </select>
+    <button onclick="generateLink()">Show Past Questions</button>
+    <div id="result" class="result"></div>
+  </div>
 
-        <label for="yearSelect">Choose Year:</label>
-        <select id="yearSelect">
-            <option value="2024">2024</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <!-- Add more years as needed -->
-        </select>
+  <script>
+    const yearLinks = {
+      "2024": "past-questions-2024.html",
+      "2023": "past-questions-2023.html",
+      "2022": "past-questions-2022.html",
+      "2021": "past-questions-2021.html",
+      "2020": "english_2020.html",
+      "2019": "past-questions-2019.html"
+    };
 
-        <button onclick="generateLink()">Show Past Questions</button>
+    function generateLink() {
+      const year = document.getElementById('yearSelect').value;
+      const link = yearLinks[year];
+      const resultDiv = document.getElementById('result');
 
-        <div id="result" class="result"></div>
-    </div>
+      if (link) {
+        resultDiv.innerHTML = `
+          <p>You have selected the year: <strong>${year}</strong>.</p>
+          <a href="${link}" target="_blank">Go to Past Questions for ${year}</a>
+        `;
+      } else {
+        resultDiv.innerHTML = `<p>No link available for the selected year.</p>`;
+      }
+    }
 
-    <script>
-        // Predefined links for each year
-        const yearLinks = {
-           
-            "2024": "https://example.com/past-questions-2024",
-            "2023": "https://example.com/past-questions-2023",
-            "2022": "https://example.com/past-questions-2022",
-            "2021": "https://example.com/past-questions-2021",
-            "2020": "english_2020.html",
-            "2019": "https://example.com/past-questions-2019",
-            // Add more predefined links here as necessary
-        };
-
-        function generateLink() {
-            const year = document.getElementById('yearSelect').value;
-            const link = yearLinks[year]; // Get the link from the predefined links
-
-            if (link) {
-                // Show the link in the result div
-                document.getElementById('result').innerHTML = `
-                    <p>You have selected the year: <strong>${year}</strong>.</p>
-                    <p>Click the link below to access the past questions for this year:</p>
-                    <a href="${link}" target="_blank" style="color: #27ae60; font-size: 1.2em; text-decoration: none;">Go to Past Questions for ${year}</a>
-                `;
-            } else {
-                // In case no link is found for the selected year
-                document.getElementById('result').innerHTML = `<p>No link available for the selected year.</p>`;
-            }
-        }
-    </script>
-
+    // Dark mode toggle
+    document.getElementById("darkToggle").addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode");
+    });
+  </script>
 </body>
 </html>
