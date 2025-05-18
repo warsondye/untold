@@ -92,6 +92,61 @@
       padding: 20px;
       text-align: center;
     }
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+body.dark-mode button {
+  background: linear-gradient(45deg, #3e8e41, #367c39);
+}
+
+body.dark-mode #quiz-container,
+body.dark-mode #leaderboard {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark-mode ul.options li {
+  background: #2b2b2b;
+}
+
+body.dark-mode ul.options li:hover {
+  background: #3e8e41;
+}
+
+/* Mobile friendly improvements */
+@media (max-width: 600px) {
+  button {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  header {
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  #user-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  footer a {
+    font-size: 16px;
+  }
+
+  #quiz-container, #leaderboard {
+    padding: 15px;
+  }
+}
 
     button {
       padding: 15px 30px;
@@ -340,6 +395,15 @@
       isPaused = !isPaused;
       document.getElementById('pause-play-btn').textContent = isPaused ? "Play" : "Pause";
     }
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+
+// Auto-load dark mode if saved
+if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark-mode');
+}
 
     function finishQuiz() {
       clearInterval(timer);
