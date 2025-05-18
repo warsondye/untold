@@ -1,177 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>St. Augustine's College - Past Questions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #006400; /* Dark Green */
-            --secondary-color: #ffffff;
-            --text-color: #333;
-            --background-light: #ffffff;
-            --background-dark: #008000; /* Green */
-            --button-hover: #004d00;
-            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Past Questions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #006400;
+      --background: #f4f4f9;
+      --text: #1a1a1a;
+      --card-bg: #ffffff;
+      --accent: #008000;
+      --hover: #004d00;
+      --border-radius: 16px;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      --gradient: linear-gradient(to right, #00b09b, #96c93d);
+    }
+  .geni-credit {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: black;
+}
 
-        /* Dark Mode Variables */
-        .dark-mode {
-            --primary-color: #222;
-            --secondary-color: #ddd;
-            --text-color: #f5f5f5;
-            --background-light: #111;
-            --background-dark: #333;
-            --button-hover: #444;
-        }
+.geni-credit span {
+    color: gold;
+    background-color: black;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px #000;
+    animation: pulse 2s infinite;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--background-light);
-            color: var(--text-color);
-            transition: background 0.3s, color 0.3s;
-        }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            box-shadow: var(--shadow);
-        }
+    .dark-mode {
+      --primary: #111;
+      --background: #181818;
+      --text: #f1f1f1;
+      --card-bg: #222;
+      --accent: #48c78e;
+      --hover: #333;
+      --gradient: linear-gradient(to right, #434343, #000000);
+    }
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .toggle-btn {
-            background: var(--secondary-color);
-            border: none;
-            color: var(--primary-color);
-            padding: 10px 15px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background 0.3s, color 0.3s;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
 
-        .toggle-btn:hover {
-            background: var(--button-hover);
-            color: var(--secondary-color);
-        }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: var(--gradient);
+      color: white;
+      flex-wrap: wrap;
+    }
 
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 40px;
-            justify-content: center;
-        }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-        .card {
-            background: var(--background-dark);
-            color: var(--secondary-color);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .toggle-btn {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 8px 16px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        }
+    .toggle-btn:hover {
+      background: white;
+      color: var(--primary);
+    }
 
-        .card a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      justify-content: center;
+      background-color: #e9f5ec;
+      border-bottom: 1px solid #ccc;
+    }
 
-        .icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+    .controls input,
+    .controls select {
+      padding: 12px 18px;
+      border-radius: var(--border-radius);
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 250px;
+      transition: border 0.3s;
+    }
 
-        .title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+    .controls input:focus,
+    .controls select:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
 
-        .footer {
-            text-align: center;
-            padding: 15px;
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            margin-top: 30px;
-            box-shadow: var(--shadow);
-        }
-    </style>
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      padding: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 30px 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: var(--gradient);
+      z-index: 0;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::before {
+      opacity: 0.1;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: var(--accent);
+      transition: transform 0.3s;
+    }
+
+    .card:hover .icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--gradient);
+      color: white;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 500px) {
+      .controls input,
+      .controls select {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="logo">Past Questions & Answers (2006 - 2024)</div>
-        <button class="toggle-btn" id="theme-toggle">
-            <i class="fas fa-moon"></i> Dark Mode
-        </button>
-    </nav>
+  <nav class="navbar">
+    <div class="logo">Past Questions & Answers (2006 - 2024)</div>
     
-    <div class="card-container">
-        <div class="card"><a href="english.html"><i class="fas fa-file-alt icon"></i><div class="title">English Language</div></a></div>
-        <div class="card"><a href="maths.html"><i class="fas fa-book icon"></i><div class="title">Core Maths</div></a></div>
-        <div class="card"><a href="social.html"><i class="fas fa-globe icon"></i><div class="title">Social Studies</div></a></div>
-        <div class="card"><a href="science.html"><i class="fas fa-flask icon"></i><div class="title">Integrated Science</div></a></div>
-        <div class="card"><a href="physics.html"><i class="fas fa-atom icon"></i><div class="title">Physics</div></a></div>
-        <div class="card"><a href="emaths.html"><i class="fas fa-calculator icon"></i><div class="title">E-Maths</div></a></div>
-        <div class="card"><a href="chemistry.html"><i class="fas fa-vial icon"></i><div class="title">Chemistry</div></a></div>
-        <div class="card"><a href="biology.html"><i class="fas fa-dna icon"></i><div class="title">Biology</div></a></div>
-        <div class="card"><a href="economics.html"><i class="fas fa-chart-line icon"></i><div class="title">Economics</div></a></div>
-        <div class="card"><a href="history.html"><i class="fas fa-landmark icon"></i><div class="title">History</div></a></div>
-    </div>
+  </nav>
 
-    <footer class="footer">
-        <p>&copy; 2025 St. Augustine's College. All rights reserved.</p>
-    </footer>
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search for a subject...">
+    <select id="filter">
+      <option value="all">All Subjects</option>
+      <option value="core">Core</option>
+      <option value="science">Science</option>
+      <option value="arts">Arts</option>
+    </select>
+  </div>
 
-    <script>
-        // Select the theme toggle button
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
+  <div class="card-container" id="cardContainer">
+    <div class="card" data-category="core"><a href="english.html"><i class="fas fa-file-alt icon"></i><div class="title">English Language</div></a></div>
+    <div class="card" data-category="core"><a href="maths.html"><i class="fas fa-book icon"></i><div class="title">Core Maths</div></a></div>
+    <div class="card" data-category="core"><a href="social.html"><i class="fas fa-globe icon"></i><div class="title">Social Studies</div></a></div>
+    <div class="card" data-category="science"><a href="science.html"><i class="fas fa-flask icon"></i><div class="title">Integrated Science</div></a></div>
+    <div class="card" data-category="science"><a href="physics.html"><i class="fas fa-atom icon"></i><div class="title">Physics</div></a></div>
+    <div class="card" data-category="science"><a href="emaths.html"><i class="fas fa-calculator icon"></i><div class="title">E-Maths</div></a></div>
+    <div class="card" data-category="science"><a href="chemistry.html"><i class="fas fa-vial icon"></i><div class="title">Chemistry</div></a></div>
+    <div class="card" data-category="science"><a href="biology.html"><i class="fas fa-dna icon"></i><div class="title">Biology</div></a></div>
+    <div class="card" data-category="arts"><a href="economics.html"><i class="fas fa-chart-line icon"></i><div class="title">Economics</div></a></div>
+    <div class="card" data-category="arts"><a href="history.html"><i class="fas fa-landmark icon"></i><div class="title">History</div></a></div>
+  </div>
 
-        // Check for user preference in localStorage
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-        }
+  <footer class="footer">
+    <p class="geni-credit">Developed by <span>GenI</span></p>
 
-        // Toggle theme on button click
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+  </footer>
+  <script src="settings.js"></script>
+  
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const searchInput = document.getElementById('search');
+    const filterSelect = document.getElementById('filter');
+    const cards = document.querySelectorAll('.card');
 
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-            } else {
-                localStorage.setItem('theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-            }
-        });
-    </script>
-    <script src="settings.js"></script>
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+      } else {
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+      }
+    });
+
+    searchInput.addEventListener('input', () => {
+      const term = searchInput.value.toLowerCase();
+      cards.forEach(card => {
+        const title = card.textContent.toLowerCase();
+        card.style.display = title.includes(term) ? 'block' : 'none';
+      });
+    });
+
+    filterSelect.addEventListener('change', () => {
+      const category = filterSelect.value;
+      cards.forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
+
 </html>
