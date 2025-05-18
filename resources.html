@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,6 +18,7 @@
       --border-radius: 15px;
       --text-light: #fff;
       --text-dark: #222;
+      --accent-color: #ffdd57;
     }
 
     * {
@@ -32,7 +34,7 @@
       transition: background 0.4s ease-in-out, color 0.4s;
       text-align: center;
       min-height: 100vh;
-      padding-bottom: 50px;
+      padding-bottom: 80px;
     }
 
     body.dark-mode {
@@ -133,6 +135,13 @@
       box-shadow: var(--shadow);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       color: inherit;
+      position: relative;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card:hover {
@@ -162,6 +171,17 @@
 
     .card a:hover {
       color: var(--primary-color);
+    }
+
+    .bookmark-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      font-size: 20px;
+      cursor: pointer;
     }
 
     .contact {
@@ -206,6 +226,24 @@
       background: #004d00;
     }
 
+    .fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
     @media (max-width: 768px) {
       .header {
         padding: 15px 20px;
@@ -214,13 +252,12 @@
     }
   </style>
 </head>
-  
 <body>
   <div class="header">
     <i class="fas fa-arrow-left back-arrow" onclick="history.back()" title="Go Back"></i>
     📚 Academic Resources
     <button class="toggle-mode" onclick="toggleMode()" title="Toggle Dark Mode">
-      <i class="fas fa-moon"></i>
+      <i class="fas fa-moon" id="modeIcon"></i>
     </button>
   </div>
 
@@ -236,37 +273,47 @@
 
   <div class="container" id="cardContainer">
     <div class="card" data-category="textbook">
+      <button class="bookmark-btn" onclick="bookmark(this)" title="Bookmark"><i class="fas fa-bookmark"></i></button>
       <i class="fas fa-book"></i>
       <h3>Textbooks</h3>
       <a href="textbook.html">View More</a>
     </div>
     <div class="card" data-category="past">
+      <button class="bookmark-btn" onclick="bookmark(this)" title="Bookmark"><i class="fas fa-bookmark"></i></button>
       <i class="fas fa-file-alt"></i>
       <h3>Past Questions</h3>
       <a href="past_questions.html">View More</a>
     </div>
     <div class="card" data-category="past">
+      <button class="bookmark-btn" onclick="bookmark(this)" title="Bookmark"><i class="fas fa-bookmark"></i></button>
       <i class="fas fa-clipboard-list"></i>
       <h3>Recent Exams</h3>
       <a href="recent_exams.html">View More</a>
     </div>
     <div class="card" data-category="course">
+      <button class="bookmark-btn" onclick="bookmark(this)" title="Bookmark"><i class="fas fa-bookmark"></i></button>
       <i class="fas fa-laptop-code"></i>
       <h3>Online Courses</h3>
       <a href="courses.html">View More</a>
     </div>
     <div class="card" data-category="video">
+      <button class="bookmark-btn" onclick="bookmark(this)" title="Bookmark"><i class="fas fa-bookmark"></i></button>
       <i class="fas fa-chalkboard-teacher"></i>
       <h3>Tutorial Videos</h3>
       <a href="tutorials.html">View More</a>
     </div>
   </div>
 
- 
+  <button class="fab" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script>
     function toggleMode() {
       document.body.classList.toggle('dark-mode');
+      const icon = document.getElementById("modeIcon");
+      icon.classList.toggle("fa-sun");
+      icon.classList.toggle("fa-moon");
     }
 
     function filterCards() {
@@ -281,13 +328,16 @@
     function filterBy(category) {
       const cards = document.querySelectorAll('.card');
       cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = category === 'all' || card.dataset.category === category ? 'block' : 'none';
       });
     }
+
+    function bookmark(btn) {
+      btn.classList.toggle('bookmarked');
+      const icon = btn.querySelector('i');
+      icon.style.color = icon.style.color === 'gold' ? '' : 'gold';
+    }
   </script>
+  <script src="settings.js"></script>
 </body>
 </html>
