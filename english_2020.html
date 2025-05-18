@@ -318,8 +318,8 @@ body.dark-mode ul.options li:hover {
     let userLevel = parseInt(localStorage.getItem('userLevel')) || 1;
 
     // Load user avatar and name from localStorage
-    const userName = localStorage.getItem('userName');
-    const userAvatar = localStorage.getItem('userAvatar');
+    const userName = localStorage.getItem('name');
+    const userAvatar = localStorage.getItem('avatar');
     document.getElementById('user-name').textContent = userName || "user";
     document.getElementById('user-avatar').src = userAvatar || "https://via.placeholder.com/50"; // Default placeholder if no avatar
 
