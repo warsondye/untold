@@ -71,18 +71,21 @@ body {
 }
 
 
+
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  background: rgba(255, 255, 255, 0.1); /* very transparent */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* softer shadow */
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
-}
-
+    }
 .logo {
   display: flex;
   align-items: center;
