@@ -235,49 +235,58 @@
   </div>
 
   <footer class="footer">
-    <p class="geni-credit">Developed by <span>GenI</span></p>
+    <p class="geni-credit">Developed by <span>Gen(I)</span></p>
 
   </footer>
   <script src="settings.js"></script>
   
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const searchInput = document.getElementById('search');
-    const filterSelect = document.getElementById('filter');
-    const cards = document.querySelectorAll('.card');
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  const searchInput = document.getElementById('search');
+  const filterSelect = document.getElementById('filter');
+  const cards = document.querySelectorAll('.card');
 
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark-mode');
-      themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-    }
+  // Optional: add dark mode toggle check
+  if (themeToggle) {
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+    }
 
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-      } else {
-        localStorage.setItem('theme', 'light');
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-      }
-    });
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+      } else {
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+      }
+    });
+  }
 
-    searchInput.addEventListener('input', () => {
-      const term = searchInput.value.toLowerCase();
-      cards.forEach(card => {
-        const title = card.textContent.toLowerCase();
-        card.style.display = title.includes(term) ? 'block' : 'none';
-      });
-    });
+  // Search functionality
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.toLowerCase();
+    cards.forEach(card => {
+      const title = card.textContent.toLowerCase();
+      card.style.display = title.includes(term) ? 'block' : 'none';
+    });
+  });
 
-    filterSelect.addEventListener('change', () => {
-      const category = filterSelect.value;
-      cards.forEach(card => {
-        card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
-      });
-    });
-  </script>
+  // Filter by category
+  filterSelect.addEventListener('change', () => {
+    const category = filterSelect.value;
+    cards.forEach(card => {
+      const cardCategory = card.dataset.category;
+      const match = (category === 'all' || category === cardCategory);
+      card.style.display = match ? 'block' : 'none';
+    });
+  });
+</script>
+
 </body>
 
-</html>
+  </html>
+  
