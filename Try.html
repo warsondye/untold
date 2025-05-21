@@ -692,36 +692,7 @@ window.addEventListener('offline', updateOfflineStatus);
   <footer>
     <p>&copy; 2025 Insight Educational Platform. All Rights Reserved.</p>
   </footer>
-  <!-- HTML Button (initially hidden) -->
-<button id="a2hs-btn" style="display: none;">Add to Home Screen</button>
-
-<script>
-  let deferredPrompt;
-  const a2hsBtn = document.getElementById('a2hs-btn');
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevent the mini-infobar from appearing on mobile
-    e.preventDefault();
-    deferredPrompt = e;
-
-    // Show your custom A2HS button
-    a2hsBtn.style.display = 'block';
-
-    a2hsBtn.addEventListener('click', () => {
-      // Show the install prompt
-      deferredPrompt.prompt();
-      // Wait for the user to respond
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the A2HS prompt');
-        } else {
-          console.log('User dismissed the A2HS prompt');
-        }
-        deferredPrompt = null;
-      });
-    });
-  });
-</script>
+  
   
 
 <button id="profileIcon">Profile</button>
