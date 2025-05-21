@@ -617,128 +617,84 @@ body.dark-mode ul.options li:hover {
   <script>
 
     const questions = [
-
-      { question: "Geraldine is very courteous but her brother is...", options: ["A. Arrogant", "B. Impolite", "C. Snobbish", "D. Haughty"], answer: "B" },
-
-      { question: "Whilst Lydia became......in the contest, Lena was confident.", options: ["A. Assuring", "B. Boastful", "C. Incensed", "D. Jittery"], answer: "D" },
-
-      { question: "Jane was thought to be the instigator; she turned out to be...", options: ["A. Accomplice", "B. Troubleshooter", "C. Advisor", "D. Cool-head"], answer: "D" },
-
-      {"question": "When they appeared before the disciplinary committee, Rex was unrepentant but Ray was...",
-
-  "options": ["A. Sorry", "B. Bold", "C. Ashamed", "D. Contrite"],
-
-  "answer": "D"
-
-},
-
-
-
-  {
-
-    "question": "Mama thought what I had done was smart but Dad said it was ...",
-
-    "options": ["A. Silly", "B. Clever", "C. Helpful", "D. Brilliant"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "Even though Joyce was praised for what she had done, her opponents ... her.",
-
-    "options": ["A. Accused", "B. Admired", "C. Envied", "D. Condemned"],
-
-    "answer": "D"
-
-  },
-
-  {
-
-    "question": "Instead of being gentle with the frightened child, Tom was rather ...",
-
-    "options": ["A. Harsh", "B. Helpful", "C. Kind", "D. Soft"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "I felt very agitated yet I maintained a ... demeanour.",
-
-    "options": ["A. Calm", "B. Confused", "C. Nervous", "D. Fidgety"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "Adding much salt to food at table is ... to the heart, not beneficial.",
-
-    "options": ["A. Harmful", "B. Tasty", "C. Salty", "D. Sweet"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "The sound from Larry’s record was ... rather than audible.",
-
-    "options": ["A. Muffled", "B. Loud", "C. Clear", "D. Piercing"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "We shall come ... how difficult it is.",
-
-    "options": ["A. Regardless", "B. No matter", "C. However", "D. Despite"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "Amima will be here ... a minute.",
-
-    "options": ["A. In", "B. After", "C. Within", "D. Over"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "The ambulance sped ... the hill.",
-
-    "options": ["A. Down", "B. Into", "C. Across", "D. Through"],
-
-    "answer": "A"
-
-  },
-
-  {
-
-    "question": "You ... a scratch on your neck the last time we met.",
-
-    "options": ["A. Had", "B. Have", "C. Got", "D. Get"],
-
-    "answer": "A"
-
-  }
-
-
-
-
-
-    ];
+  { question: "Geraldine is very courteous but her brother is...", options: ["A. Arrogant", "B. Impolite", "C. Snobbish", "D. Haughty"], answer: "B" },
+  { question: "Whilst Lydia became......in the contest, Lena was confident.", options: ["A. Assuring", "B. Boastful", "C. Incensed", "D. Jittery"], answer: "D" },
+  { question: "Jane was thought to be the instigator; she turned out to be...", options: ["A. Accomplice", "B. Troubleshooter", "C. Advisor", "D. Cool-head"], answer: "A" },
+  { question: "When they appeared before the committee, Rex was unrepentant but Ray was...", options: ["A. Sober", "B. Reformed", "C. Remorseful", "D. Quiet"], answer: "C" },
+  { question: "Mama thought what I had done was smart but Dad said it was...", options: ["A. Dumb", "B. Lame", "C. Wicked", "D. Rough"], answer: "A" },
+  { question: "Instead of being gentle with the child, Tom was rather...", options: ["A. Brisk", "B. Firm", "C. Brash", "D. Harsh"], answer: "D" },
+  { question: "I felt very agitated yet I maintained a ... demeanour.", options: ["A. Brave", "B. Calm", "C. Strict", "D. Gentle"], answer: "B" },
+  { question: "Adding much salt to food is ... to the heart.", options: ["A. Hurtful", "B. Abusive", "C. Injurious", "D. Offensive"], answer: "C" },
+  { question: "The sound from Larry's recorder was ... rather than audible.", options: ["A. Muffled", "B. Peaceful", "C. Noisy", "D. Blurred"], answer: "A" },
+  { question: "We shall overcome ... how difficult it is.", options: ["A. No matter", "B. Irrespective", "C. Not looking", "D. Despite"], answer: "A" },
+  { question: "Jemima will be here ... a minute.", options: ["A. On", "B. By", "C. In", "D. To"], answer: "C" },
+  { question: "The ambulance sped ... the hill.", options: ["A. Downwards", "B. Down", "C. Between", "D. Upward"], answer: "B" },
+  { question: "You ... a scratch on your neck last time.", options: ["A. Are having", "B. Were having", "C. Had", "D. Have"], answer: "C" },
+  { question: "He ... they should be punished immediately.", options: ["A. Is thinking", "B. Think", "C. Has thought", "D. Thinks"], answer: "D" },
+  { question: "... midnight, Tom fell asleep.", options: ["A. By", "B. Until", "C. During", "D. On"], answer: "C" },
+  { question: "Elorm and Jacob were then ... war with each other.", options: ["A. Into", "B. With", "C. At", "D. In"], answer: "C" },
+  { question: "Though Tay had heard their cries, he ... them.", options: ["A. Has ignored", "B. Ignores", "C. Is ignoring", "D. Ignored"], answer: "D" },
+  { question: "Ali and Maria are good friends; they seldom ...", options: ["A. Have argument", "B. Will argue", "C. Argue", "D. Argued"], answer: "C" },
+  { question: "Kennedy and Portia ... live in Accra.", options: ["A. Used to", "B. Use to", "C. Once", "D. Then"], answer: "A" },
+  { question: "Mother's message gingered the children to work hard.", options: ["A. Aspirational", "B. Sensational", "C. Inspirational", "D. Devotional"], answer: "C" },
+  { question: "I have a hunch that the programme will not go well.", options: ["A. Conviction", "B. Suspicion", "C. Revelation", "D. Notion"], answer: "B" },
+  { question: "Desmond admonished his people not to go to war.", options: ["A. Reproved", "B. Threatened", "C. Inspired", "D. Warned"], answer: "D" },
+  { question: "Parliamentary proceedings were adjourned until January.", options: ["A. Annulled", "B. Scheduled", "C. Suspended", "D. Abolished"], answer: "C" },
+  { question: "What the professor said was alien to the students.", options: ["A. Offensive", "B. Pleasing", "C. Unfamiliar", "D. Fantastic"], answer: "C" },
+  { question: "The unwholesome practice is anathema to decent people.", options: ["A. A danger", "B. A curse", "C. A taboo", "D. A malady"], answer: "C" },
+  { question: "When Joanita was declared winner, pandemonium broke out.", options: ["A. Catastrophe", "B. Chaos", "C. Riots", "D. Demonstrations"], answer: "B" },
+  { question: "The subject was accentuated at the meeting.", options: ["A. Emphasized", "B. Mentioned", "C. Considered", "D. Analyzed"], answer: "A" },
+  { question: "Cecil throttled the wild dog.", options: ["A. Stifled", "B. Gagged", "C. Strangled", "D. Caged"], answer: "C" },
+  { question: "Simon was given a drug to suppress his hyperactivity.", options: ["A. Crush", "B. Conquer", "C. Restrict", "D. Control"], answer: "D" },
+  { question: "She has kept him at arm’s length.", options: ["A. Doesn't want to get close to him", "B. Broken ties", "C. Calls frequently", "D. Hates everything he does"], answer: "A" },
+  { question: "He has to put his cards on the table.", options: ["A. Write a detailed application", "B. Be truthful", "C. Be more sociable", "D. Reach out to everybody"], answer: "B" },
+  { question: "The day our daughter went to school is a red-letter day.", options: ["A. Important and celebrated", "B. Sad day", "C. Dangerous", "D. Start of scholarship"], answer: "A" },
+  { question: "The commander hit the ceiling.", options: ["A. Surprised", "B. Worried", "C. Very angry", "D. Embarrassed"], answer: "C" },
+  { question: "The news spread like wildfire.", options: ["A. Made people uncomfortable", "B. Haphazardly", "C. Reached many quickly", "D. Produced fiery reactions"], answer: "C" },
+  { question: "Selina got out of bed on the wrong side.", options: ["A. Woke up late", "B. Felt unwell", "C. Didn't sleep well", "D. Was in a bad mood"], answer: "D" },
+  { question: "James developed cold feet.", options: ["A. Felt sick", "B. Had second thoughts", "C. Nervous", "D. Changed mind"], answer: "C" },
+  { question: "The priest’s death was a bolt from the blue.", options: ["A. Died suddenly", "B. Killed by assailants", "C. Mysterious", "D. Peaceful death"], answer: "A" },
+  { question: "Anne is two-faced.", options: ["A. Courteous", "B. Self-centred", "C. Hypocritical", "D. Accommodating"], answer: "C" },
+  { question: "Joe decided to strike while the iron was hot.", options: ["A. Attacked people", "B. Finished work", "C. Took daring decisions", "D. Took advantage of the situation"], answer: "D" },
+  
+  { question: "When Joe got there, he decided to strike while the iron was hot. This means that Joe", options: ["A. Attacked the people he met there", "B. Finished all his work in good time", "C. Took daring decisions", "D. Took advantage of the situation"], answer: "D" },
+
+  { question: "Two months after moving into our new house, we hadn't noticed any —41— on the building till one Sunday morning...", options: ["A. Damages", "B. Blemishes", "C. Challenges", "D. Defects"], answer: "D" },
+  { question: " — water started — from a corner of the shower...", options: ["A. Flowing", "B. Oozing", "C. Falling", "D. Dripping"], answer: "D" },
+  { question: "— in our — bedroom", options: ["A. Inner", "B. Guest", "C. Master", "D. Big"], answer: "C" },
+  { question: "— We assumed it was a simple —", options: ["A. Outflow", "B. Leakage", "C. Trickling", "D. Filtering"], answer: "B" },
+  { question: "— He did, but the — lasted for that day only", options: ["A. Repair", "B. Sealing", "C. Mending", "D. Blockade"], answer: "A" },
+  { question: "— I called the — who promptly came to our rescue", options: ["A. Technician", "B. Mason", "C. Plumber", "D. Worker"], answer: "C" },
+  { question: " — A thorough check revealed that two roofing — had been blown away", options: ["A. Rafters", "B. Sheets", "C. Thatches", "D. Beams"], answer: "B" },
+  { question: " — causing water to collect on —", options: ["A. Ceiling", "B. Top", "C. Chimney", "D. Attic"], answer: "A" },
+  { question: "— The water had — gradually", options: ["A. Soaked", "B. Spread", "C. Seeped", "D. Sopped"], answer: "C" },
+  { question: " — We therefore had to reroof that — of the house", options: ["A. Side", "B. Phase", "C. Area", "D. Line"], answer: "A" },
+
+  // Great Expectations
+  { question: " Who spoke the words 'My father, Pip, he were given to drink...'?", options: ["A. Joe", "B. Wopsle", "C. Estella", "D. Biddy"], answer: "A" },
+  { question: " What was being discussed?", options: ["A. Pumblechook's new job", "B. Estella's trip to London", "C. Going to school", "D. Miss Havisham's temperament"], answer: "C" },
+  { question: " 'He hammered away at my mother' is an example of", options: ["A. Hyperbole", "B. Oxymoron", "C. Metaphor", "D. Personification"], answer: "C" },
+  { question: " What does the extract say about the persona? He was", options: ["A. Quite irresponsible", "B. A liquor seller", "C. Always drunk", "D. Violent and a drunkard"], answer: "D" },
+  { question: "Biddy was", options: ["A. Wopsle's wife", "B. Miss Havisham's daughter", "C. Pip's girlfriend", "D. Estella's sister"], answer: "C" },
+  { question: " The speaker was about to travel to", options: ["A. Birmingham", "B. London", "C. Sandhurst", "D. Portsmouth"], answer: "B" },
+  { question: " Two other characters present were", options: ["A. Joe and Pumblechook", "B. Biddy and Estella", "C. Estella and Miss Havisham", "D. Joe and Biddy"], answer: "D" },
+  { question: " The speaker was thinking about the", options: ["A. Uncertainty of his future", "B. Bright prospects at his new destination", "C. Prospect of being an apprentice", "D. Joy of living with Miss Havisham"], answer: "A" },
+  { question: "The speaker was", options: ["A. Estella", "B. Pip", "C. Joe", "D. Biddy"], answer: "B" },
+  { question: " 'I will be spending six days there' is the meaning of the underlined part", options: ["A. I'm going through the six most difficult days of my life", "B. I have six more days to go", "C. I will be spending six days there", "D. I will reconcile with them in six days"], answer: "C" },
+
+  // No Sweetness Here
+  { question: "51. Setu abhors the big men because they", options: ["A. Sleep around with underage girls", "B. Steal money belonging to the state", "C. Are involved in crooked businesses", "D. Exploit the poor and vulnerable"], answer: "A" },
+  { question: "52. Setu and Zirigu are", options: ["A. Business partners", "B. Staff of a guesthouse", "C. Husband and wife", "D. Village farmers"], answer: "D" },
+  { question: "53. 'Big men' as used in the extract symbolizes", options: ["A. State officials", "B. Semi-literates", "C. Wealth and well-being", "D. Affluence and corruption"], answer: "D" },
+  { question: "54. The speaker is", options: ["A. Sissie", "B. Fiifi", "C. Kodjo Fi", "D. Zirigu"], answer: "C" },
+  { question: "55. The figure of speech contained in this extract is", options: ["A. Imagery", "B. Symbolism", "C. Metaphor", "D. Allusion"], answer: "B" },
+  { question: "56. What had occasioned this speech?", options: ["A. The high handedness of the authorities", "B. Immorality of the big men", "C. Extortion by the big men", "D. The gap between the rich and the poor"], answer: "B" },
+  { question: "57. The mother referred to in the extract is", options: ["A. Setu", "B. Maami Fante", "C. Maami Ama", "D. Sissie"], answer: "A" },
+  { question: "58. 'Little sister' refers to", options: ["A. Mercy", "B. Mary Koomson", "C. Sissie", "D. Connie"], answer: "D" },
+  { question: "59. The speaker is", options: ["A. Esi Amofa", "B. Connie", "C. Yaa Gyawaa", "D. Mercy"], answer: "B" },
+  { question: "60. 'That man' in the extract is", options: ["A. Kojo Fi", "B. Mensah Arthur", "C. Fiifi Koomson", "D. Chicha"], answer: "C" }
+];
+    
 
 
 
