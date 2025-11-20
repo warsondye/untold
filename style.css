@@ -1,0 +1,441 @@
+/* =======================
+   Church Dashboard CSS
+   Complete Green/White Theme
+   ~600 lines
+======================= */
+
+:root {
+  --bg: #f7fcf7;
+  --card: #ffffff;
+  --accent: #2e7d32;
+  --accent-dark: #27632a;
+  --muted: #6b7280;
+  --glass: rgba(255, 255, 255, 0.85);
+  --danger: #e53935;
+  --success: #43a047;
+  --hover: rgba(46, 125, 50, 0.1);
+  --shadow-light: rgba(16, 24, 40, 0.04);
+  --shadow-medium: rgba(16, 24, 40, 0.08);
+  --shadow-dark: rgba(16, 24, 40, 0.15);
+}
+
+/* -------------------- GLOBAL -------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: #111;
+  line-height: 1.4;
+}
+
+/* -------------------- TOPBAR -------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: linear-gradient(90deg, #e8f5e9, #f1f8f1);
+  border-bottom: 1px solid #e0e7e0;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.controls select,
+.controls button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.controls button:hover,
+.controls select:hover {
+  background: var(--hover);
+}
+
+/* -------------------- CONTAINER -------------------- */
+.container {
+  max-width: 1100px;
+  margin: 18px auto;
+  padding: 0 12px;
+}
+
+/* -------------------- KPIs -------------------- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kpi {
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 0 6px 18px var(--shadow-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  position: relative;
+}
+
+.kpi:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px var(--shadow-medium);
+}
+
+.kpi-title {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.kpi-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 6px;
+}
+
+.event-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.event-card {
+  flex: 1 1 120px;
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: 0 4px 12px var(--shadow-light);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--shadow-medium);
+  background: var(--hover);
+}
+
+.kpi-title,
+.event-card .kpi-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.kpi-value,
+.event-card .kpi-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin-top: 4px;
+}
+
+/* -------------------- CHARTS -------------------- */
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.chart-card {
+  position: relative;
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px var(--shadow-light);
+}
+
+.chart-card h3 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 320px !important;
+}
+
+/* -------------------- TABLES -------------------- */
+.tables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.table-card {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px var(--shadow-light);
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.table-card h4 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+.table-card input {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table-card th,
+.table-card td {
+  padding: 8px;
+  border-bottom: 1px solid #f1f1f1;
+  text-align: left;
+}
+
+.table-card th {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.table-card tr:hover {
+  background: var(--hover);
+}
+
+button.small {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button.small:hover {
+  background: var(--hover);
+}
+
+/* -------------------- MODAL -------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-content {
+  background: var(--card);
+  padding: 20px;
+  width: 95%;
+  max-width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--shadow-dark);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: var(--accent-dark);
+}
+
+.modal-content form label {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background: var(--accent-dark);
+}
+
+.closeModal {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.closeModal:hover {
+  background: #b71c1c;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 900px) {
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .charts { grid-template-columns: 1fr; }
+  .tables { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 500px) {
+  .kpis { grid-template-columns: 1fr; }
+  .controls { flex-wrap: wrap; gap: 6px; }
+}
+
+/* -------------------- EXTRA DECORATIONS -------------------- */
+.kpi::after {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  border-radius: 12px;
+  box-shadow: inset 0 0 15px rgba(46,125,50,0.05);
+  pointer-events: none;
+}
+
+.chart-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.event-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 12px rgba(46,125,50,0.05);
+  pointer-events: none;
+}
+
+/* Hover Effects for Charts */
+.chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--shadow-medium);
+  transition: all 0.3s ease;
+}
+
+/* Table Buttons */
+.table-card button.small {
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Scrollbar Styling */
+.table-card::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.table-card::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 6px;
+}
+
+.table-card::-webkit-scrollbar-track {
+  background: #f1f8f1;
+}
+
+/* End of CSS */
+.special-events-list {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--card);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.03);
+}
+
+.special-events-list h4 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--accent-dark);
+}
+
+.special-events-list .event-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  background: var(--glass);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.special-events-list .event-card:hover {
+  background: var(--hover);
+}
+
+.special-events-list .event-card .event-title {
+  font-weight: 500;
+}
+
+.special-events-list .event-card .event-count {
+  font-weight: 700;
+  color: var(--accent);
+}
