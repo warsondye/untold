@@ -1,0 +1,229 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 20, 2025 at 03:53 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `church_dashboard`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL COMMENT 'Primary key',
+  `attendance_date` date NOT NULL COMMENT 'Date of the service or event',
+  `section` enum('Normal Church','Prophetic Service','Strive','Mighty Women Conference','Mighty Men Conference','Youth','Adults','Children','Special Programs') NOT NULL COMMENT 'Section or event type',
+  `attendance_count` int(11) NOT NULL DEFAULT 0 COMMENT 'Number of attendees',
+  `event_name` varchar(255) DEFAULT NULL COMMENT 'Optional special event name'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Church attendance records';
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `attendance_date`, `section`, `attendance_count`, `event_name`) VALUES
+(1, '2025-01-05', 'Normal Church', 8, NULL),
+(2, '2025-01-12', 'Normal Church', 5, NULL),
+(3, '2025-01-19', 'Normal Church', 6, NULL),
+(4, '2025-01-25', 'Strive', 19, 'STRIVE 2025'),
+(5, '2025-01-26', 'Normal Church', 7, NULL),
+(6, '2025-02-02', 'Normal Church', 5, NULL),
+(7, '2025-02-09', 'Normal Church', 6, NULL),
+(8, '2025-02-16', 'Normal Church', 3, NULL),
+(9, '2025-02-23', 'Normal Church', 5, NULL),
+(10, '2025-02-28', 'Normal Church', 7, NULL),
+(11, '2025-03-02', 'Normal Church', 4, NULL),
+(12, '2025-03-08', 'Prophetic Service', 15, 'HSS'),
+(13, '2025-03-09', 'Normal Church', 5, NULL),
+(14, '2025-03-16', 'Normal Church', 5, NULL),
+(15, '2025-03-23', 'Normal Church', 8, NULL),
+(16, '2025-04-06', 'Normal Church', 10, NULL),
+(17, '2025-04-13', 'Normal Church', 4, NULL),
+(18, '2025-04-20', 'Normal Church', 4, NULL),
+(19, '2025-04-27', 'Normal Church', 10, NULL),
+(20, '2025-05-04', 'Normal Church', 7, NULL),
+(21, '2025-05-11', 'Normal Church', 5, NULL),
+(22, '2025-05-18', 'Normal Church', 5, NULL),
+(23, '2025-05-25', 'Normal Church', 2, NULL),
+(24, '2025-06-01', 'Normal Church', 4, NULL),
+(25, '2025-06-08', 'Normal Church', 6, NULL),
+(26, '2025-06-15', 'Normal Church', 3, NULL),
+(27, '2025-06-22', 'Normal Church', 4, NULL),
+(28, '2025-06-27', 'Prophetic Service', 8, 'Special Prophetic Service'),
+(29, '2025-06-29', 'Normal Church', 5, NULL),
+(30, '2025-07-06', 'Normal Church', 6, NULL),
+(31, '2025-07-13', 'Normal Church', 5, NULL),
+(32, '2025-07-20', 'Normal Church', 4, NULL),
+(33, '2025-07-27', 'Normal Church', 5, NULL),
+(34, '2025-08-03', 'Normal Church', 5, NULL),
+(35, '2025-08-09', 'Mighty Women Conference', 30, 'Mighty Women Conference 2025'),
+(36, '2025-08-17', 'Normal Church', 3, NULL),
+(37, '2025-08-24', 'Normal Church', 7, NULL),
+(38, '2025-08-31', 'Normal Church', 4, NULL),
+(39, '2025-09-07', 'Normal Church', 2, NULL),
+(40, '2025-09-14', 'Normal Church', 3, NULL),
+(41, '2025-09-21', 'Normal Church', 5, NULL),
+(42, '2025-09-27', 'Mighty Men Conference', 30, 'Mighty Men Conference 2025'),
+(43, '2025-09-28', 'Normal Church', 4, NULL),
+(44, '2025-10-05', 'Normal Church', 4, NULL),
+(45, '2025-10-12', 'Normal Church', 7, NULL),
+(46, '2025-10-19', 'Normal Church', 5, NULL),
+(47, '2025-10-26', 'Normal Church', 6, NULL),
+(48, '2025-11-02', 'Normal Church', 5, NULL),
+(50, '2029-08-17', 'Normal Church', 8000, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_date` (`attendance_date`),
+  ADD KEY `idx_section` (`section`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key', AUTO_INCREMENT=53;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 20, 2025 at 03:54 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `church_dashboard`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leads`
+--
+
+CREATE TABLE `leads` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `job` varchar(100) DEFAULT NULL,
+  `reached_out_by` varchar(100) DEFAULT NULL,
+  `lead_status` enum('Top Priority','Special Programs','Follow-up') NOT NULL,
+  `remarks` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `leads`
+--
+
+INSERT INTO `leads` (`id`, `date`, `name`, `contact`, `job`, `reached_out_by`, `lead_status`, `remarks`) VALUES
+(1, '2025-01-11', 'Raphael', '0595389526', 'Construction Worker', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up, could come for special programs'),
+(2, '2025-01-11', 'Harrison', '0535291945', 'Undergraduate Student (Radford)', 'Rev. Prince Adjei', 'Top Priority', 'Visit aggresively. Potential permanent church member'),
+(3, '2025-01-04', 'Alex', '0242796973', 'Insurance Officer', 'Rev. Prince Adjei', 'Top Priority', 'Visit aggresively. Potential permanent church member'),
+(4, '2025-01-14', 'Clavet', '0531172855', 'Undergraduate Student (UG, Level 300)', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up, could come for special programs'),
+(5, '2025-01-25', 'Joyce', '0548559616', 'Undergraduate Student (UG, Level 300)', 'Rev. Prince Adjei', 'Follow-up', 'Follow-up through call, might come for special programs'),
+(6, '2025-01-25', 'Selina', '0539935667', '', 'Bernard Abakah', 'Special Programs', 'Follow-up, could come for special programs'),
+(7, '2025-01-25', 'Moricia', '0596828385', '', 'Rev. Prince Adjei', 'Follow-up', 'Follow-up, could come for special programs'),
+(8, '2025-01-25', 'Blessing', '0598683387', 'Undergraduate Student (UG, Level 100)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(9, '2025-01-25', 'Nuella', '0279186442', 'Undergraduate Student (UG, Level 100)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(10, '2025-01-25', 'Christabel', '0536593212', 'Undergraduate Student (UG, Level 100)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(11, '2025-01-11', 'Martha', '0558316149', '', 'Rev. Prince Adjei', 'Follow-up', 'Follow-up, could come for special programs'),
+(12, '2025-01-11', 'Elizabeth', '0505497319', 'Food Vendor', 'Rev. Prince Adjei', 'Follow-up', 'Follow-up, could come for special programs'),
+(13, '2025-01-11', 'Richmond', '0201579611', 'Senior High Student/Footballer', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(14, '2025-01-11', 'Kwaku', '05530445377', '', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(15, '2025-01-11', 'Bernard', '0256942194', 'Undergraduate Student (UG, Level 300)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(16, '2025-01-11', 'Desmond', '0506033408', 'Undergraduate Student (UG, Level 300)', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(17, '2025-01-11', 'Lawrence', '0200463967', 'Undergraduate Student (UG, Level 300)', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(18, '2025-01-11', 'Henry', '0203919486', 'Undergraduate Student (UG, Level 300)', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(19, '2025-01-18', 'Efia', '0597030174', '', 'Bernard Abakah', 'Special Programs', 'Follow-up, could come for special programs'),
+(20, '2025-01-18', 'Gloria', '0537973401', '', 'Bernard Abakah', 'Special Programs', 'Follow-up, could come for special programs'),
+(21, '2025-01-18', 'Fidel', '0534933302', '', 'Wisdom Amuzu', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(22, '2025-01-18', 'Eric', '0538191471', '', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(23, '2025-01-18', 'Angela', '0539262220', '', 'Bernard Abakah', 'Follow-up', 'Follow-up, could come for special programs'),
+(24, '2025-01-18', 'Perpetual', '0533148014', '', 'Rev. Prince Adjei', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(25, '2025-01-18', 'Andy', '0597473752', 'Undergraduate Student (UG, Level 100)', 'Bernard Abakah', 'Follow-up', 'Follow-up, could come for special programs'),
+(26, '2025-01-18', 'Leslie', '0537087373', 'Undergraduate Student (UG, Level 100)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(27, '2025-01-18', 'Sama', '0537516439', '', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(28, '2025-01-18', 'Evans', '0272755603', 'Undergraduate Student (UG, Level 300)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(29, '2025-01-22', 'Ernest', '0539657394', 'Undergraduate Student (UG, Level 100)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(30, '2025-02-22', 'Evans', '0597727469', 'Undergraduate Student (UG, Level 300)', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(31, '2025-02-22', 'Noah', '0242816257', 'Undergraduate Student', 'Bernard Abakah', 'Follow-up', 'Follow-up, could come for special programs'),
+(32, '2025-02-22', 'Deborah', '0277459823', '', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(33, '2025-02-22', 'Micheal', '0241481906', 'Chef', 'Bernard Abakah', 'Special Programs', 'Follow-up through call, might come for special programs'),
+(34, '2025-02-22', 'Naomi', '0549684074', 'Food vendor', 'Bernard Abakah', 'Follow-up', 'Follow-up, could come for special programs'),
+(35, '2025-02-24', 'kofi', '0200946948', 'Chef', 'Bernard Abakah', '', 'bccv');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `leads`
+--
+ALTER TABLE `leads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `leads`
+--
+ALTER TABLE `leads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
